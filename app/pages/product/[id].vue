@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="lux-page relative min-h-screen overflow-hidden py-8 sm:py-10">
     <div class="lux-glow glow-a" aria-hidden="true"></div>
     <div class="lux-glow glow-b" aria-hidden="true"></div>
@@ -16,7 +16,7 @@
               {{ product?.name || 'รายละเอียดสินค้า' }}
             </h1>
             <p class="mt-3 text-sm leading-relaxed text-white/90 sm:text-base">
-              รายละเอียดเชิงเทคนิคสำหรับงานอุตสาหกรรม พร้อมข้อมูลสำหรับจัดซื้อและขอใบเสนอราคา
+              รายละเอียดสินค้าและสเปกสำหรับงานสนามกีฬา พร้อมข้อมูลสำหรับสั่งซื้อและขอใบเสนอราคา
             </p>
 
             <div class="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
@@ -135,7 +135,7 @@
 
               <div class="glass-card rounded-2xl p-4 text-sm text-slate-600">
                 <div class="font-bold text-slate-900">Need Support?</div>
-                <div class="mt-1">โทร 02-517-0688 หรืออีเมล info@yushi.co.th</div>
+                <div class="mt-1">โทร 02-517-0688 หรืออีเมล info@probuild.com</div>
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@ const loading = ref(true)
 const error = ref('')
 
 useHead(() => ({
-  title: `${product.value?.name || 'รายละเอียดสินค้า'} | Yushi Industrial`,
+  title: `${product.value?.name || 'รายละเอียดสินค้า'} | probuild`,
 }))
 
 const loadProduct = async () => {
@@ -253,7 +253,7 @@ watch(id, () => loadProduct())
 .hero-photo {
   position: absolute;
   inset: 0;
-  background-image: url('/factory-layout.jpg');
+  background-image: url('/f248d603c9559d3dff1bb684011d9ae2.jpg');
   background-size: cover;
   background-position: center;
 }

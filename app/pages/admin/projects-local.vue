@@ -1,28 +1,31 @@
 ﻿<template>
   <div class="min-h-screen bg-slate-50 text-slate-900">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 py-8">
-      <!-- Header -->
-      <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            จัดการโปรเจค (Admin)
-          </h1>
-          <p class="mt-1 text-sm text-slate-600">
-            เก็บข้อมูลไว้ในเบราว์เซอร์ (LocalStorage) — ไม่ใช้ Supabase
-          </p>
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
+        <div class="pointer-events-none absolute inset-0 hero-bg" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute inset-0 hero-overlay" aria-hidden="true"></div>
+
+        <div class="relative z-10 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p class="inline-flex items-center rounded-full border border-[#0B4AA2]/20 bg-[#0B4AA2]/5 px-3 py-1 text-xs font-semibold tracking-widest text-[#0B4AA2] uppercase">
+              Admin Dashboard
+            </p>
+            <h1 class="mt-3 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+              จัดการโปรเจค (Project Portfolio)
+            </h1>
+            <p class="mt-1 text-sm text-slate-600">
+              เพิ่ม แก้ไข จัดลำดับ และตรวจพรีวิวโปรเจคก่อนแสดงผลหน้าบ้าน
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+            โปรเจคทั้งหมด <span class="font-extrabold text-slate-900">{{ projects.length }}</span> รายการ
+          </div>
         </div>
       </div>
 
-      <!-- Projects section -->
-      <div class="mt-8 rounded-2xl border border-slate-200 bg-white/70 p-5 sm:p-6">
-        <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">จัดการโปรเจค</h2>
-        <p class="mt-1 text-sm text-slate-600">
-          เพิ่ม แก้ไข จัดลำดับ และตรวจพรีวิวโปรเจคก่อนแสดงผลหน้าบ้าน
-        </p>
-      </div>
-
       <!-- Layout -->
-      <div class="mt-4 grid gap-6 lg:grid-cols-12">
+      <div class="mt-6 grid gap-6 lg:grid-cols-12">
         <!-- Form -->
         <section class="lg:col-span-5 space-y-6">
           <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -54,7 +57,7 @@
                   type="text"
                   class="w-full h-11 rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none
                          focus:ring-2 focus:ring-[#0B4AA2]/20"
-                  placeholder="เช่น ระบบลำเลียงสินค้า / ระบบอัตโนมัติ / โครงการติดตั้ง..."
+                  placeholder="เช่น สนามบาสเกตบอลในร่ม / ปรับปรุงพื้นสนามฟุตซอล / สนามกีฬาอเนกประสงค์..."
                   required
                 />
               </div>
@@ -69,7 +72,7 @@
                   rows="5"
                   class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none
                          focus:ring-2 focus:ring-[#0B4AA2]/20"
-                  placeholder="อธิบายงาน/ขอบเขต/สถานที่/จุดเด่นแบบย่อ..."
+                  placeholder="อธิบายประเภทสนาม ขนาดพื้นที่ วัสดุพื้นสนาม และจุดเด่นของงาน..."
                   required
                 ></textarea>
                 <div class="mt-1 text-xs text-slate-500">
@@ -88,7 +91,7 @@
                     type="text"
                     class="w-full h-11 rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none
                            focus:ring-2 focus:ring-[#0B4AA2]/20"
-                    placeholder="เช่น Automation / HVAC / Conveyor"
+                    placeholder="เช่น Basketball Court / Futsal / Volleyball"
                   />
                 </div>
 
@@ -101,7 +104,7 @@
                     type="text"
                     class="w-full h-11 rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none
                            focus:ring-2 focus:ring-[#0B4AA2]/20"
-                    placeholder="ชื่อบริษัท/หน่วยงาน"
+                    placeholder="เช่น โรงเรียน / สโมสร / องค์กร"
                   />
                 </div>
 
@@ -132,6 +135,7 @@
                   <div class="flex-1">
                     <input
                       type="file"
+                      multiple
                       accept="image/*"
                       class="block w-full text-sm text-slate-600
                              file:mr-3 file:rounded-xl file:border-0 file:bg-slate-100 file:px-4 file:py-2
@@ -145,38 +149,49 @@
                         class="h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold hover:bg-slate-50"
                         @click="useExampleImage()"
                       >
-                        ใช้รูปตัวอย่าง
+                        ใช้รูปตัวอย่างกีฬา
                       </button>
 
                       <button
-                        v-if="form.imageDataUrl"
+                        v-if="form.imageDataUrls.length"
                         type="button"
                         class="h-9 rounded-xl border border-slate-300 bg-slate-100 px-3 text-sm font-semibold text-slate-700 hover:bg-slate-200"
-                        @click="form.imageDataUrl = ''"
+                        @click="form.imageDataUrl = ''; form.imageDataUrls = []"
                       >
                         ลบรูป
                       </button>
                     </div>
 
                     <div class="mt-2 text-xs text-slate-500">
-                      * รูปจะถูกเก็บเป็น Base64 ใน LocalStorage (เหมาะกับรูปไม่ใหญ่มาก)
+                      * เลือกได้หลายรูปในครั้งเดียว และจะเก็บเป็น Base64 ใน LocalStorage
                     </div>
                   </div>
 
                   <!-- Preview thumb -->
-                  <div class="w-24 shrink-0 self-start sm:self-auto">
+                  <div class="w-36 shrink-0 self-start sm:self-auto">
+                    <div v-if="form.imageDataUrls.length" class="grid max-h-64 grid-cols-2 gap-2 overflow-y-auto pr-1">
+                      <div
+                        v-for="(img, i) in form.imageDataUrls"
+                        :key="`preview-${i}`"
+                        class="aspect-square rounded-lg border border-slate-200 bg-slate-50 overflow-hidden cursor-move"
+                        draggable="true"
+                        @dragstart="onThumbDragStart(i)"
+                        @dragover.prevent
+                        @drop="onThumbDrop(i)"
+                      >
+                        <img :src="img" alt="preview" class="h-full w-full object-cover" />
+                      </div>
+                    </div>
                     <div
+                      v-else
                       class="aspect-square rounded-xl border border-slate-200 bg-slate-50 overflow-hidden flex items-center justify-center"
                     >
-                      <img
-                        v-if="form.imageDataUrl"
-                        :src="form.imageDataUrl"
-                        alt="preview"
-                        class="h-full w-full object-cover"
-                      />
-                      <div v-else class="text-xs text-slate-400 text-center px-2">
+                      <div class="text-xs text-slate-400 text-center px-2">
                         ไม่มีรูป
                       </div>
+                    </div>
+                    <div v-if="form.imageDataUrls.length > 1" class="mt-1 text-[11px] text-slate-500 text-right">
+                      ลากรูปเพื่อจัดลำดับได้
                     </div>
                   </div>
                 </div>
@@ -219,8 +234,8 @@
               <div class="group rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
                 <div class="aspect-[16/9] bg-slate-100 overflow-hidden">
                   <img
-                    v-if="form.imageDataUrl"
-                    :src="form.imageDataUrl"
+                    v-if="form.imageDataUrls.length"
+                    :src="form.imageDataUrls[0]"
                     alt="project"
                     class="h-full w-full object-cover"
                   />
@@ -309,8 +324,8 @@
                     <div class="sm:col-span-4">
                       <div class="aspect-[16/10] rounded-xl bg-slate-100 overflow-hidden">
                         <img
-                          v-if="p.imageDataUrl"
-                          :src="p.imageDataUrl"
+                          v-if="getProjectCover(p)"
+                          :src="getProjectCover(p)"
                           :alt="p.name"
                           class="h-full w-full object-cover"
                         />
@@ -353,6 +368,13 @@
 
                           <div class="mt-2 text-sm text-slate-600 line-clamp-3">
                             {{ p.description }}
+                          </div>
+
+                          <div
+                            v-if="(p.imageDataUrls?.length || 0) > 1"
+                            class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600"
+                          >
+                            {{ p.imageDataUrls?.length }} รูป
                           </div>
 
                           <div class="mt-2 text-xs text-slate-500">
@@ -670,6 +692,7 @@ type ProjectRow = {
   client?: string
   status?: ProjectStatus
   imageDataUrl?: string
+  imageDataUrls?: string[]
   createdAt: string
   updatedAt: string
 }
@@ -711,6 +734,7 @@ const form = ref<{
   client: string
   status: "" | ProjectStatus
   imageDataUrl: string
+  imageDataUrls: string[]
 }>({
   name: "",
   description: "",
@@ -718,6 +742,7 @@ const form = ref<{
   client: "",
   status: "",
   imageDataUrl: "",
+  imageDataUrls: [],
 })
 
 const partnerForm = ref<{
@@ -727,6 +752,7 @@ const partnerForm = ref<{
   name: "",
   imageDataUrl: "",
 })
+const draggingThumbIndex = ref<number | null>(null)
 
 const nowIso = () => new Date().toISOString()
 
@@ -795,6 +821,7 @@ const resetForm = () => {
     client: "",
     status: "",
     imageDataUrl: "",
+    imageDataUrls: [],
   }
 }
 
@@ -813,7 +840,8 @@ const onSubmit = async () => {
   const category = form.value.category.trim() || undefined
   const client = form.value.client.trim() || undefined
   const status = form.value.status || undefined
-  const imageDataUrl = form.value.imageDataUrl || ""
+  const imageDataUrls = form.value.imageDataUrls.filter(Boolean)
+  const imageDataUrl = imageDataUrls[0] || ""
 
   if (editingId.value) {
     const i = projects.value.findIndex((x) => x.id === editingId.value)
@@ -828,6 +856,7 @@ const onSubmit = async () => {
         client,
         status,
         imageDataUrl,
+        imageDataUrls,
         updatedAt: nowIso(),
       }
       projects.value.splice(i, 1, updated)
@@ -845,6 +874,7 @@ const onSubmit = async () => {
     client,
     status,
     imageDataUrl,
+    imageDataUrls,
     createdAt: nowIso(),
     updatedAt: nowIso(),
   }
@@ -865,6 +895,9 @@ const editProject = (id: string) => {
     client: p.client || "",
     status: (p.status as ProjectStatus) || "",
     imageDataUrl: p.imageDataUrl || "",
+    imageDataUrls: (p.imageDataUrls && p.imageDataUrls.length)
+      ? p.imageDataUrls
+      : (p.imageDataUrl ? [p.imageDataUrl] : []),
   }
   if (isClient()) window.scrollTo({ top: 0, behavior: "smooth" })
 }
@@ -900,19 +933,43 @@ const move = async (index: number, delta: number) => {
 const onPickImage = async (e: Event) => {
   if (!isClient()) return
   const input = e.target as HTMLInputElement | null
-  const file = input?.files?.[0]
-  if (!file) return
-
+  const files = Array.from(input?.files || [])
+  if (!files.length) return
   const maxMB = 2
-  if (file.size > maxMB * 1024 * 1024) {
-    window.alert(`รูปใหญ่เกิน ${maxMB}MB กรุณาย่อรูปก่อน`)
+  const nextImages: string[] = []
+  for (const file of files) {
+    if (file.size > maxMB * 1024 * 1024) {
+      window.alert(`ไฟล์ ${file.name} ใหญ่เกิน ${maxMB}MB กรุณาย่อรูปก่อน`)
+      continue
+    }
+    const dataUrl = await fileToDataUrl(file)
+    nextImages.push(dataUrl)
+  }
+  if (!nextImages.length) {
     if (input) input.value = ""
     return
   }
-
-  const dataUrl = await fileToDataUrl(file)
-  form.value.imageDataUrl = dataUrl
+  form.value.imageDataUrls = [...form.value.imageDataUrls, ...nextImages]
+  form.value.imageDataUrl = form.value.imageDataUrls[0] || ""
   if (input) input.value = ""
+}
+
+const onThumbDragStart = (index: number) => {
+  draggingThumbIndex.value = index
+}
+
+const onThumbDrop = (toIndex: number) => {
+  const fromIndex = draggingThumbIndex.value
+  draggingThumbIndex.value = null
+  if (fromIndex === null || fromIndex === toIndex) return
+
+  const arr = form.value.imageDataUrls.slice()
+  const dragged = arr[fromIndex]
+  if (!dragged) return
+  arr.splice(fromIndex, 1)
+  arr.splice(toIndex, 0, dragged)
+  form.value.imageDataUrls = arr
+  form.value.imageDataUrl = arr[0] || ""
 }
 
 const onPickPartnerImage = async (e: Event) => {
@@ -942,8 +999,13 @@ const fileToDataUrl = (file: File) =>
 
 const useExampleImage = async () => {
   if (!isClient()) return
-  form.value.imageDataUrl = await fetchToDataUrl("/factory-layout.jpg")
+  const sample = await fetchToDataUrl("/f248d603c9559d3dff1bb684011d9ae2.jpg")
+  form.value.imageDataUrls = [...form.value.imageDataUrls, sample]
+  form.value.imageDataUrl = form.value.imageDataUrls[0] || ""
 }
+
+const getProjectCover = (p: ProjectRow) =>
+  (p.imageDataUrls && p.imageDataUrls.length ? p.imageDataUrls[0] : p.imageDataUrl) || ""
 
 const fetchToDataUrl = async (url: string) => {
   const res = await fetch(url)
@@ -1010,6 +1072,17 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.hero-bg {
+  background-image: url('/16f347af2bafc6631b753cff99d30010.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.hero-overlay {
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.84), rgba(241, 245, 249, 0.9), rgba(255, 243, 240, 0.7));
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

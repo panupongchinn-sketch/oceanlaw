@@ -157,13 +157,59 @@ export const useAuth = () => {
 
   const signIn = async (email: string, password: string) => {
     const cleanEmail = normalizeEmail(email)
-    const account = readUsers().find(
+    const users = readUsers()
+
+    // Dev bootstrap: if there is no account yet, first login credentials become super admin.
+    if (users.length === 0) {
+      const uuid = typeof crypto !== "undefined" && crypto.randomUUID
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(36).slice(2)}`
+
+      const firstAccount: LocalAuthAccount = {
+        id: uuid,
+        email: cleanEmail,
+        password,
+        full_name: "",
+        role: "super_admin",
+        approved: true,
+        created_at: new Date().toISOString(),
+      }
+
+      writeUsers([firstAccount])
+      const session = makeSession(firstAccount)
+      writeSession(session)
+      user.value = session.user
+      return { data: { user: session.user, session }, error: null }
+    }
+
+    let account = users.find(
       (u) => normalizeEmail(u.email) === cleanEmail && u.password === password
     )
 
     if (!account) {
       return { data: null, error: createError("Invalid email or password") }
     }
+    if (!account.approved) {
+      // Recovery path: if no approved super admin exists, promote oldest user.
+      const hasApprovedSuperAdmin = users.some((u) => u.role === "super_admin" && !!u.approved)
+      if (!hasApprovedSuperAdmin) {
+        const oldest = [...users].sort(
+          (a, b) => new Date(a.created_at || 0).getTime() - new Date(b.created_at || 0).getTime()
+        )[0]
+        if (oldest?.id === account.id) {
+          const patchedUsers = users.map((u) =>
+            u.id === account!.id ? { ...u, role: "super_admin", approved: true } : u
+          )
+          writeUsers(patchedUsers)
+          account = patchedUsers.find((u) => u.id === account!.id)!
+        } else {
+          return { data: null, error: createError("Your account is pending approval from super admin") }
+        }
+      } else {
+        return { data: null, error: createError("Your account is pending approval from super admin") }
+      }
+    }
+
     if (!account.approved) {
       return { data: null, error: createError("Your account is pending approval from super admin") }
     }

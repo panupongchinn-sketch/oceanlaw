@@ -1,9 +1,18 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+﻿// https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
+  srcDir: "app",
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  css: ["./app/assets/css/main.css"],
+  app: {
+    head: {
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/1.ico" },
+      ],
+    },
+  },
+  css: ["./assets/css/main.css"],
   vite: {
     plugins: [tailwindcss()],
   },

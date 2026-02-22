@@ -2,7 +2,7 @@
   <div class="relative min-h-[calc(100vh-0px)] overflow-hidden bg-slate-950 text-slate-100">
     <div
       class="absolute inset-0 bg-cover bg-center"
-      style="background-image: url('/factory-layout.jpg');"
+      style="background-image: url('/f248d603c9559d3dff1bb684011d9ae2.jpg');"
       aria-hidden="true"
     ></div>
 
@@ -18,20 +18,25 @@
         <section class="lg:col-span-6">
           <div class="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
             <span class="inline-block h-2.5 w-2.5 rounded-full bg-cyan-300"></span>
-            <span class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">Industrial Control System</span>
+            <span class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">SPORT FLOOR SOLUTIONS</span>
           </div>
 
           <h1 class="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            YUSHI Industrial Portal
+            PROBUILD Sport Portal
           </h1>
-          <p class="mt-4 max-w-xl text-sm leading-relaxed text-slate-200 sm:text-base">
-            ระบบบริหารงานสำหรับทีมวิศวกรรมและปฏิบัติการในโรงงาน เข้าสู่ระบบเพื่อจัดการโครงการ ลูกค้า และข้อมูลหน้างานได้อย่างปลอดภัย
-          </p>
 
-          <div class="mt-6 flex flex-wrap items-center gap-3 text-xs text-slate-200/90">
-            <span class="rounded-full border border-white/20 bg-white/10 px-3 py-1">Factory Projects</span>
-            <span class="rounded-full border border-white/20 bg-white/10 px-3 py-1">Maintenance Reports</span>
-            <span class="rounded-full border border-white/20 bg-white/10 px-3 py-1">Partner Management</span>
+          <div class="mt-4 max-w-xl space-y-1 text-sm leading-relaxed text-slate-200 sm:text-base">
+            <p class="font-semibold text-white">บริษัท โปร-บิลด์ (ประเทศไทย) จำกัด</p>
+            <p>335,337 ถนนช่างอากาศอุทิศ แขวงดอนเมือง</p>
+            <p>เขตดอนเมือง กรุงเทพมหานคร 10210</p>
+            <p class="pt-2">โทร: 0-2929-6199-200</p>
+            <p>แฟกซ์: 0-2929-5853</p>
+            <p class="pt-2">Hotline: 086-3223421, 086-3162034</p>
+            <p>
+              Email:
+              <a class="text-white hover:underline" href="mailto:info@probuildthai.com">info@probuildthai.com</a>,
+              <a class="text-[#ff6b3d] hover:underline" href="mailto:puchaya@probuildthai.com">puchaya@probuildthai.com</a>
+            </p>
           </div>
         </section>
 
@@ -39,7 +44,7 @@
           <div class="mx-auto w-full max-w-md rounded-2xl border border-slate-200/30 bg-white/92 shadow-2xl backdrop-blur-sm">
             <div class="border-b border-slate-200/70 p-6">
               <div class="flex items-center gap-3">
-                <img src="/MBLogo.png" alt="M&B" class="h-10 w-auto" />
+                <img src="/cropped-logo.png" alt="probuild" class="h-10 w-auto" />
                 <div>
                   <h2 class="text-xl font-extrabold text-slate-900">เข้าสู่ระบบ</h2>
                   <p class="text-sm text-slate-600">กรอก User และ Password เพื่อเข้าใช้งาน</p>
@@ -107,7 +112,7 @@
             </form>
           </div>
 
-          <p class="mt-4 text-center text-xs text-slate-300">© {{ new Date().getFullYear() }} M&B</p>
+          <p class="mt-4 text-center text-xs text-slate-300">© {{ new Date().getFullYear() }} probuild</p>
         </section>
       </div>
     </div>
@@ -118,7 +123,7 @@
 import { computed, ref } from "vue"
 import { useRoute } from "vue-router"
 
-useHead({ title: "Login | M&B" })
+useHead({ title: "Login | probuild" })
 
 const route = useRoute()
 const redirectTo = computed(() => {

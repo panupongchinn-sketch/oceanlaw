@@ -1,129 +1,119 @@
 ﻿<template>
   <div class="min-h-screen bg-slate-50">
-    <!-- ✅ HERO VIDEO -->
-    <section class="relative w-full">
-      <div class="relative h-[520px] sm:h-[640px] w-full overflow-hidden bg-black">
+    <section class="relative w-full overflow-hidden rounded-[28px] border border-slate-200 bg-slate-950">
+      <div class="absolute inset-0">
         <video
-          ref="heroVideo"
-          class="absolute inset-0 h-full w-full object-cover"
+          class="h-full w-full object-cover"
           autoplay
           muted
           loop
           playsinline
-          webkit-playsinline
-          preload="metadata"
+          preload="auto"
+          poster="/f248d603c9559d3dff1bb684011d9ae2.jpg"
         >
-          <source
-            src="https://yushiindustrial.com/wp-content/uploads/2025/03/vdo-intro.mp4"
-            type="video/mp4"
-          />
+          <source :src="heroVideoSrc" type="video/webm" />
         </video>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/45 via-black/25 to-black/45"></div>
+      </div>
 
-        <div class="absolute inset-0 bg-black/35"></div>
+      <div class="relative z-20 grid min-h-[560px] gap-8 px-6 py-8 sm:px-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-12">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-white">
+            SPORTS CONSTRUCTION AND EQUIPMENT
+          </div>
 
-        <div class="relative h-full mx-auto max-w-7xl px-4 sm:px-6 flex items-center">
-          <div
-            class="w-full max-w-2xl rounded-2xl bg-black/55 border border-white/10 p-6 sm:p-10 text-white shadow-xl"
-          >
-            <h1 class="text-4xl sm:text-6xl font-extrabold italic tracking-tight">
-              Yushi Industrial
-            </h1>
+          <h1 class="mt-5 text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+            PROBUILD SPORTS
+          </h1>
 
-            <p class="mt-5 text-sm sm:text-base text-white/85 leading-relaxed">
-              บริการรับปรึกษา ออกแบบ ติดตั้ง บำรุงรักษา งานระบบอุตสาหกรรม
-              จำหน่ายสินค้าอุปกรณ์อุตสาหกรรม พร้อมทีมช่างมืออาชีพ และบริการ 24 ชั่วโมง
-            </p>
+          <p class="mt-5 max-w-2xl text-sm leading-7 text-slate-100 sm:text-base">
+            รับออกแบบและก่อสร้างสนามกีฬา ติดตั้งพื้นสนาม และจำหน่ายอุปกรณ์กีฬาครบวงจร
+            สำหรับโรงเรียน สโมสร หน่วยงานราชการ และภาคเอกชน พร้อมทีมติดตั้งมืออาชีพและบริการหลังการขาย
+          </p>
 
-            <div class="mt-7 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                class="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-white/40
-                       text-white font-semibold hover:bg-white/10 transition"
-              >
-                โปรเจคของเรา
-              </a>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href="#projects"
+              class="inline-flex h-11 items-center rounded-full bg-white px-6 text-sm font-extrabold text-slate-900 transition hover:bg-slate-100"
+            >
+              โปรเจคของเรา
+            </a>
+            <a
+              href="#catalog"
+              class="inline-flex h-11 items-center rounded-full border border-white/40 bg-white/15 px-6 text-sm font-extrabold text-white transition hover:bg-white/25"
+            >
+              สินค้าของเรา
+            </a>
+            <NuxtLink
+              to="/contact"
+              class="inline-flex h-11 items-center rounded-full border border-white/40 bg-transparent px-6 text-sm font-extrabold text-white transition hover:bg-white/15"
+            >
+              ติดต่อเรา
+            </NuxtLink>
+          </div>
 
-              <a
-                href="#catalog"
-                class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#0B4AA2]
-                       text-white font-semibold hover:bg-[#083A7E] transition"
-              >
-                สินค้าของเรา
-              </a>
-
-              <NuxtLink
-                to="/contact"
-                class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white/15
-                       text-white font-semibold hover:bg-white/20 transition"
-              >
-                ติดต่อเรา
-              </NuxtLink>
-            </div>
-
-            <div class="mt-5 text-xs sm:text-sm text-white/75">
-              ทั้งหมดสินค้า:
-              <span class="font-bold text-white">{{ products.length }}</span>
-              รายการ
-            </div>
+          <div class="mt-6 text-sm text-slate-200">
+            สินค้าในระบบ
+            <span class="font-bold text-white">{{ products.length }}</span>
+            รายการ
           </div>
         </div>
+
       </div>
+
     </section>
 
-    <!-- ✅ การ์ด 1 ใบ "ด้านล่าง VDO" -->
-    <section class="bg-slate-50">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="py-10">
-          <div class="rounded-3xl bg-white shadow-xl border border-slate-200 overflow-hidden">
-            <div class="p-6 sm:p-10">
-              <div class="grid lg:grid-cols-12 gap-8 items-center">
-                <!-- ซ้าย -->
-                <div class="lg:col-span-12">
-                  <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#0B4AA2]">
-                    YUSHI INDUSTRIAL
-                    <span class="text-slate-900">ผู้จัดจำหน่าย สินค้าอุตสาหกรรม</span>
-                  </h2>
+    <section id="projects" class="mx-auto mt-8 max-w-none bg-white px-4 py-14 sm:px-6 lg:px-10">
+      <div class="text-center">
+        <h2 class="text-3xl font-black tracking-tight text-slate-900 sm:text-5xl">โปรเจคของเรา</h2>
+      </div>
 
-                  <p class="mt-4 text-slate-600 leading-relaxed">
-                    รวมสินค้าอุตสาหกรรมหลายหมวดหมู่ พร้อมบริการให้คำปรึกษา ออกแบบ ติดตั้ง และบำรุงรักษา
-                    เพื่อให้งานของคุณเดินได้อย่างมืออาชีพ
-                  </p>
+      <div v-if="!projectsLoaded" class="mt-8 text-center text-slate-500">กำลังโหลด...</div>
 
-                  <div class="mt-6 flex flex-wrap gap-3">
-                    <a
-                      href="tel:025170688"
-                      class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-[#0B4AA2] text-[#0B4AA2] font-bold
-                             hover:bg-[#0B4AA2] hover:text-white transition"
-                    >
-                      📞 02-517-0688
-                    </a>
+      <div
+        v-else-if="!projects.length"
+        class="mt-8 rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center"
+      >
+        <div class="text-lg font-extrabold text-slate-900">ยังไม่มีโปรเจค</div>
+        <div class="mt-1 text-sm text-slate-600">เพิ่มข้อมูลจากเมนูจัดการโปรเจคก่อน</div>
+      </div>
 
-                    <a
-                      href="#"
-                      class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#17A34A] text-white font-bold
-                             hover:opacity-90 transition"
-                    >
-                      💬 @yushigroup
-                    </a>
-                  </div>
-
-                  <div class="mt-5 text-sm text-slate-500">
-                    ทั้งหมดสินค้า:
-                    <span class="font-bold text-slate-700">{{ products.length }}</span>
-                    รายการ
-                  </div>
-                </div>
-
+      <div v-else class="mt-12 grid grid-cols-1 items-start gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <NuxtLink
+          v-for="p in projects"
+          :key="p.id"
+          :to="`/project/${p.id}`"
+          class="group block w-full cursor-pointer"
+        >
+          <div class="relative aspect-[16/11] overflow-hidden rounded-2xl bg-slate-100 shadow-[0_12px_30px_rgba(2,6,23,0.18)]">
+            <Transition name="slide-right" mode="out-in">
+              <img
+                v-if="projectImages(p).length"
+                :key="`${p.id}-${currentProjectImageIndex(p)}`"
+                :src="projectCurrentImage(p)"
+                :alt="p.name"
+                class="h-full w-full object-cover"
+                @error="onImgError"
+              />
+              <div v-else key="no-image" class="flex h-full w-full items-center justify-center text-sm text-slate-400">
+                ไม่มีรูป
               </div>
+            </Transition>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6">
+              <h3 class="line-clamp-2 text-2xl font-extrabold text-white drop-shadow-sm">{{ p.name }}</h3>
+              <span
+                class="mt-4 inline-flex h-10 items-center rounded-full bg-[#2e58d6] px-6 text-sm font-extrabold text-white transition group-hover:bg-[#2448b6]"
+              >
+                ดูโปรเจค
+              </span>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </section>
 
-    
-
-    <!-- ✅ PARTNERS -->
     <section class="relative py-14 sm:py-18">
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-50 via-white to-slate-50"></div>
       <div class="absolute inset-x-0 top-0 -z-10 h-px bg-slate-200"></div>
@@ -134,21 +124,19 @@
             Trusted by <span class="h-1 w-1 rounded-full bg-[#0B4AA2]"></span> Partners
           </p>
 
-          <h2 class="mt-3 text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            ลูกค้าและพาร์ทเนอร์ธุรกิจ
-          </h2>
+          <h2 class="mt-3 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">ลูกค้าและพาร์ทเนอร์</h2>
 
-          <p class="mt-3 text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            ตัวอย่างองค์กรที่ให้ความไว้วางใจและร่วมงานกับเรา
+          <p class="mx-auto mt-3 max-w-2xl leading-relaxed text-slate-600">
+            ตัวอย่างองค์กรที่ไว้วางใจและร่วมงานกับเรา
           </p>
         </div>
 
         <div class="mt-10 sm:mt-12">
-          <div v-if="partnerLogos.length" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div v-if="partnerLogos.length" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             <div
               v-for="item in partnerLogos"
               :key="item.id"
-              class="h-24 rounded-xl border border-slate-200 bg-white flex items-center justify-center overflow-hidden"
+              class="flex h-24 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white"
             >
               <img
                 :src="item.imageDataUrl"
@@ -160,14 +148,8 @@
             </div>
           </div>
 
-          <div v-else class="flex items-center justify-center">
-            <img
-              src="https://yushiindustrial.com/wp-content/uploads/2025/03/customer-logo.png"
-              alt="Partners"
-              class="w-full max-w-5xl h-auto object-contain"
-              loading="lazy"
-              @error="onImgError"
-            />
+          <div v-else class="rounded-2xl border border-dashed border-slate-200 bg-white/70 px-6 py-10 text-center text-slate-500">
+            ยังไม่มีโลโก้พาร์ทเนอร์
           </div>
 
           <div class="mt-10 h-px bg-slate-200"></div>
@@ -175,131 +157,18 @@
       </div>
     </section>
 
-    <!-- ✅ PROJECTS (LocalStorage) — ✅ “กว้างออกซ้ายขวา” -->
-    <main id="projects" class="mx-auto max-w-screen-2xl px-4 sm:px-6 py-12">
-      <!-- heading -->
-      <div class="text-center">
-        <p class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#0B4AA2] uppercase">
-          Portfolio <span class="h-1 w-1 rounded-full bg-[#0B4AA2]"></span> Projects
-        </p>
-
-        <h2 class="mt-3 text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-          โปรเจคของเรา
-          <span class="text-[#0B4AA2]"></span>
-        </h2>
-
-        <p class="mt-3 text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          
-        </p>
-      </div>
-
-      <div class="mt-10 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-
-      <div v-if="!projectsLoaded" class="mt-8 text-center text-slate-500">
-        กำลังโหลด...
-      </div>
-
-      <div
-        v-else-if="!projects.length"
-        class="mt-8 rounded-3xl border border-dashed border-slate-200 bg-white p-10 text-center"
-      >
-        <div
-          class="mx-auto mb-4 h-12 w-12 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center text-xl"
-        >
-          📌
-        </div>
-        <div class="text-lg font-extrabold text-slate-900">ยังไม่มีโปรเจค</div>
-        <div class="mt-1 text-sm text-slate-600">ไปเพิ่มที่เมนู “จัดการโปรเจค” ก่อน</div>
-      </div>
-
-      <!-- ✅ Grid: ลดจำนวนคอลัมน์ เพื่อให้แต่ละใบ “กว้าง” -->
-      <div v-else class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-7">
-        <article
-          v-for="p in projects"
-          :key="p.id"
-          class="group rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-lg transition"
-        >
-          <!-- ✅ ทำเป็นการ์ดแนวนอนบนจอใหญ่ (กว้างออกซ้ายขวา) -->
-          <div class="grid md:grid-cols-12">
-            <!-- media -->
-            <div class="md:col-span-5">
-              <div class="relative h-56 sm:h-64 md:h-full bg-slate-100 overflow-hidden">
-                <img
-                  v-if="p.imageDataUrl"
-                  :src="p.imageDataUrl"
-                  :alt="p.name"
-                  class="h-full w-full object-cover group-hover:scale-[1.03] transition"
-                />
-                <div v-else class="h-full w-full flex items-center justify-center text-slate-400">
-                  <div class="text-center">
-                    <div class="text-4xl">🖼️</div>
-                    <div class="mt-2 text-sm font-semibold">ไม่มีรูป</div>
-                  </div>
-                </div>
-
-                <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-transparent"></div>
-              </div>
-            </div>
-
-            <!-- body -->
-            <div class="md:col-span-7 p-6 sm:p-7">
-              <h3 class="font-extrabold text-slate-900 text-lg sm:text-xl line-clamp-2">
-                {{ p.name }}
-              </h3>
-
-              <div class="mt-3 flex flex-wrap gap-2 text-xs">
-                <span
-                  v-if="p.category"
-                  class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-semibold"
-                >
-                  {{ p.category }}
-                </span>
-
-                <span
-                  v-if="p.client"
-                  class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 font-semibold"
-                >
-                  {{ p.client }}
-                </span>
-
-                <span
-                  v-if="p.status"
-                  class="px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 font-semibold"
-                >
-                  {{ p.status }}
-                </span>
-              </div>
-
-              <p class="mt-4 text-sm sm:text-[15px] text-slate-600 leading-relaxed line-clamp-5">
-                {{ p.description }}
-              </p>
-
-              <div class="mt-6 h-px bg-slate-100"></div>
-              <div class="mt-4 flex items-center justify-between text-xs text-slate-500">
-                <span class="font-semibold text-slate-700">Yushi Industrial</span>
-                <span class="inline-flex items-center gap-1 font-semibold text-[#0B4AA2]">
-                  ดูเพิ่มเติม <span class="transition group-hover:translate-x-0.5">→</span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </main>
-
-    <!-- ✅ PRODUCT CATALOG -->
-    <main id="catalog" class="mx-auto max-w-7xl px-4 sm:px-6 py-12">
+    <main id="catalog" class="mx-auto max-w-7xl px-4 py-12 sm:px-6">
       <div v-if="loading" class="flex items-center gap-3 text-slate-500">
-        <span class="inline-block h-5 w-5 rounded-full border-2 border-slate-300 border-t-transparent animate-spin"></span>
+        <span class="inline-block h-5 w-5 animate-spin rounded-full border-2 border-slate-300 border-t-transparent"></span>
         <span class="font-medium">กำลังโหลด...</span>
       </div>
 
-      <div v-else-if="error" class="p-4 rounded-xl border border-red-200 bg-red-50 text-red-700">
-        <div class="font-bold">โหลดข้อมูลไม่ได้</div>
-        <div class="text-sm mt-1">{{ error }}</div>
+      <div v-else-if="error" class="rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">
+        <div class="font-bold">โหลดข้อมูลไม่สำเร็จ</div>
+        <div class="mt-1 text-sm">{{ error }}</div>
         <button
           type="button"
-          class="mt-3 px-4 py-2 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700"
+          class="mt-3 rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
           @click="loadProducts"
         >
           ลองอีกครั้ง
@@ -309,10 +178,8 @@
       <div v-else class="space-y-8">
         <div class="space-y-4">
           <div class="text-center">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0B4AA2]">
-              หมวดหมู่สินค้า
-            </h2>
-            <p class="mt-2 text-slate-600 max-w-2xl mx-auto">
+            <h2 class="text-2xl font-extrabold text-[#0B4AA2] sm:text-3xl">หมวดหมู่สินค้า</h2>
+            <p class="mx-auto mt-2 max-w-2xl text-slate-600">
               เลือกดูสินค้าแยกตามแบรนด์ พร้อมรายละเอียดและรูปภาพ
             </p>
           </div>
@@ -320,58 +187,49 @@
           <div class="flex justify-end">
             <button
               type="button"
-              class="h-10 px-4 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-sm"
+              class="h-10 rounded-lg border border-slate-200 bg-white px-4 text-sm hover:bg-slate-50"
               @click="loadProducts"
             >
-              Refresh
+              รีเฟรช
             </button>
           </div>
         </div>
 
         <section v-for="g in groupedByBrand" :key="g.brand" class="space-y-4">
           <div>
-            <h3 class="text-xl font-extrabold text-slate-900">
-              {{ g.brand }}
-            </h3>
-            <p class="text-sm text-slate-500">
-              {{ g.items.length }} รายการ
-            </p>
+            <h3 class="text-xl font-extrabold text-slate-900">{{ g.brand }}</h3>
+            <p class="text-sm text-slate-500">{{ g.items.length }} รายการ</p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             <NuxtLink
               v-for="p in g.items"
               :key="p.id"
               :to="`/product/${p.id}`"
-              class="group block rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition
-                     focus:outline-none focus:ring-2 focus:ring-[#0B4AA2]/20"
+              class="group block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#0B4AA2]/20"
             >
-              <div class="aspect-[4/3] bg-white flex items-center justify-center border-b border-slate-100 overflow-hidden">
+              <div class="aspect-[4/3] overflow-hidden border-b border-slate-100 bg-white">
                 <img
                   :src="p.image_url || fallbackImg"
                   :alt="p.name || 'product'"
-                  class="w-full h-full object-contain group-hover:scale-[1.02] transition"
+                  class="h-full w-full object-contain transition group-hover:scale-[1.02]"
                   loading="lazy"
                   @error="onImgError"
                 />
               </div>
 
-              <div class="p-4 space-y-2">
-                <h4 class="font-bold text-slate-900 leading-snug line-clamp-2">
-                  {{ p.name || "-" }}
-                </h4>
+              <div class="space-y-2 p-4">
+                <h4 class="line-clamp-2 font-bold leading-snug text-slate-900">{{ p.name || '-' }}</h4>
 
-                <div class="text-xs text-slate-600 space-y-1">
-                  <div><span class="font-semibold">Brand:</span> {{ p.brand || "-" }}</div>
-                  <div><span class="font-semibold">SKU:</span> {{ p.sku || "-" }}</div>
-                  <div><span class="font-semibold">Category:</span> {{ p.category || "-" }}</div>
-                  <div><span class="font-semibold">Unit:</span> {{ p.unit || "-" }}</div>
+                <div class="space-y-1 text-xs text-slate-600">
+                  <div><span class="font-semibold">Brand:</span> {{ p.brand || '-' }}</div>
+                  <div><span class="font-semibold">SKU:</span> {{ p.sku || '-' }}</div>
+                  <div><span class="font-semibold">Category:</span> {{ p.category || '-' }}</div>
+                  <div><span class="font-semibold">Unit:</span> {{ p.unit || '-' }}</div>
                 </div>
 
                 <div class="pt-2">
-                  <span class="text-sm font-semibold text-[#0B4AA2] group-hover:underline">
-                    View details &gt;
-                  </span>
+                  <span class="text-sm font-semibold text-[#0B4AA2] group-hover:underline">ดูรายละเอียด ></span>
                 </div>
               </div>
             </NuxtLink>
@@ -379,96 +237,12 @@
         </section>
       </div>
     </main>
-<!-- ✅ FOOTER LINKS SECTION -->
-    <section class="bg-white border-t border-slate-200">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 py-12">
-        <div class="grid gap-10 lg:grid-cols-12">
-          <div class="lg:col-span-4">
-            <div class="flex items-center gap-3">
-              <img src="/MBLogo.png" alt="Yushi Industrial" class="h-12 w-auto object-contain" />
-              <div class="leading-tight">
-                <div class="text-lg font-extrabold text-slate-900">Yushi Industrial</div>
-                <div class="text-sm text-slate-500 -mt-0.5">YUSHI GROUP</div>
-              </div>
-            </div>
 
-            <p class="mt-5 text-sm text-slate-600 leading-relaxed">
-              เราเป็นผู้ให้บริการ รับติดตั้ง ซ่อมบำรุง และจำหน่ายสินค้าอุตสาหกรรมแบบครบวงจร
-              มุ่งเน้นคุณภาพ มาตรฐาน และบริการหลังการขาย
-            </p>
-          </div>
-
-          <div class="lg:col-span-3">
-            <h3 class="text-sm font-extrabold text-[#0B4AA2] tracking-wide">สินค้าของเรา</h3>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li>ระบบส่งกำลังและระบบอัตโนมัติ</li>
-              <li>ระบบลมและโบลเวอร์อุตสาหกรรม</li>
-              <li>ระบบระบายอากาศภายในอาคาร</li>
-              <li>ระบบบำบัดอากาศและระบบระบายอากาศ</li>
-              <li>ปั๊มน้ำอุตสาหกรรม</li>
-              <li>ปั๊มน้ำเพื่อการเกษตร</li>
-              <li>เครื่องมือช่างและอุปกรณ์งานช่าง</li>
-            </ul>
-          </div>
-
-          <div class="lg:col-span-3">
-            <h3 class="text-sm font-extrabold text-[#0B4AA2] tracking-wide">บริการของเรา</h3>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li>บริการงานออกแบบและติดตั้ง</li>
-              <li>บริการงานซ่อมและบำรุงรักษา</li>
-              <li>บริการงานเช่าและจัดงานกิจกรรม</li>
-              <li>บริการสำรวจหน้างาน</li>
-              <li>บริการหลังการขาย</li>
-            </ul>
-          </div>
-
-          <div class="lg:col-span-2">
-            <h3 class="text-sm font-extrabold text-[#0B4AA2] tracking-wide">ติดต่อเรา</h3>
-
-            <div class="mt-4 text-sm text-slate-700 leading-relaxed">
-              <div class="font-semibold text-slate-900">บริษัท ยูชิ อินดัสเทรียล จำกัด</div>
-              <div class="mt-1">72 ถนนรามอินทรา แขวงมีนบุรี เขตมีนบุรี กรุงเทพฯ 10510</div>
-            </div>
-
-            <ul class="mt-4 space-y-3 text-sm text-slate-700">
-              <li class="flex items-center gap-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">📞</span>
-                <a class="hover:underline" href="tel:025170688">02-517-0688</a>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">☎️</span>
-                <a class="hover:underline" href="tel:025170863">02-517-0863</a>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">✉️</span>
-                <a class="hover:underline" href="mailto:info@yushi.co.th">info@yushi.co.th</a>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">💬</span>
-                <span>@yushigroup</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="bg-[#0B4AA2] text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 text-xs text-white/85">
-          <NuxtLink to="/contact" class="hover:underline">Data privacy</NuxtLink>
-          <NuxtLink to="/contact" class="hover:underline">Cookie settings</NuxtLink>
-          <NuxtLink to="/contact" class="hover:underline">Imprint</NuxtLink>
-          <NuxtLink to="/contact" class="hover:underline">General terms and conditions</NuxtLink>
-          <span class="sm:ml-auto text-white/70">© {{ new Date().getFullYear() }} M&B</span>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue"
+import { computed, onBeforeUnmount, onMounted, ref } from "vue"
 
 type ProductRow = {
   id: string
@@ -488,6 +262,7 @@ type ProjectRow = {
   client?: string
   status?: "draft" | "doing" | "done"
   imageDataUrl?: string
+  imageDataUrls?: string[]
   createdAt: string
   updatedAt: string
 }
@@ -500,18 +275,21 @@ type PartnerLogoRow = {
   updatedAt: string
 }
 
-/** =================== PRODUCTS (Shared Store) =================== */
 const PRODUCTS_KEY = "products"
-const fallbackImg = "https://picsum.photos/seed/product/1200/900"
 const PARTNERS_KEY = "partners"
 const PROJECTS_KEY = "projects"
+const fallbackImg = "https://picsum.photos/seed/product/1200/900"
+const heroVideoSrc = "https://sportcourt.com/wp-content/uploads/2025/05/HomepageBanner.webm"
 const { getValue } = useSharedStore()
-const heroVideo = ref<HTMLVideoElement | null>(null)
+let projectSlideTimer: ReturnType<typeof setInterval> | null = null
 
 const products = ref<ProductRow[]>([])
 const loading = ref(true)
 const error = ref("")
 const partnerLogos = ref<PartnerLogoRow[]>([])
+const projects = ref<ProjectRow[]>([])
+const projectsLoaded = ref(false)
+const projectSlideById = ref<Record<string, number>>({})
 
 const onImgError = (e: Event) => {
   const el = e.target as HTMLImageElement | null
@@ -546,6 +324,25 @@ const groupedByBrand = computed(() => {
   })
 })
 
+const projectImages = (p: ProjectRow): string[] => {
+  if (Array.isArray(p.imageDataUrls) && p.imageDataUrls.length) {
+    return p.imageDataUrls.filter(Boolean)
+  }
+  return p.imageDataUrl ? [p.imageDataUrl] : []
+}
+
+const currentProjectImageIndex = (p: ProjectRow): number => {
+  const images = projectImages(p)
+  if (!images.length) return 0
+  return (projectSlideById.value[p.id] || 0) % images.length
+}
+
+const projectCurrentImage = (p: ProjectRow): string => {
+  const images = projectImages(p)
+  if (!images.length) return ""
+  return images[currentProjectImageIndex(p)] || images[0]
+}
+
 const loadProducts = async () => {
   loading.value = true
   error.value = ""
@@ -560,16 +357,17 @@ const loadProducts = async () => {
   }
 }
 
-const projects = ref<ProjectRow[]>([])
-const projectsLoaded = ref(false)
-
 const loadProjectsLocal = async () => {
   try {
     const arr = await getValue<ProjectRow>(PROJECTS_KEY)
     projects.value = Array.isArray(arr) ? arr : []
+    const nextMap: Record<string, number> = {}
+    for (const p of projects.value) nextMap[p.id] = 0
+    projectSlideById.value = nextMap
   } catch (e) {
     console.error("loadProjectsLocal error:", e)
     projects.value = []
+    projectSlideById.value = {}
   } finally {
     projectsLoaded.value = true
   }
@@ -585,54 +383,71 @@ const loadPartnerLogosLocal = async () => {
   }
 }
 
-const tryPlayHeroVideo = async () => {
-  const video = heroVideo.value
-  if (!video) return
-
-  video.muted = true
-  video.defaultMuted = true
-  video.playsInline = true
-  video.autoplay = true
-
-  try {
-    await video.play()
-  } catch {
-    // Mobile browsers may block until first user interaction.
-  }
+const startProjectSlider = () => {
+  if (projectSlideTimer) clearInterval(projectSlideTimer)
+  projectSlideTimer = setInterval(() => {
+    const nextMap: Record<string, number> = { ...projectSlideById.value }
+    for (const p of projects.value) {
+      const total = projectImages(p).length
+      if (total <= 1) continue
+      const curr = nextMap[p.id] || 0
+      nextMap[p.id] = (curr + 1) % total
+    }
+    projectSlideById.value = nextMap
+  }, 3200)
 }
 
 onMounted(() => {
-  void tryPlayHeroVideo()
-  setTimeout(() => {
-    void tryPlayHeroVideo()
-  }, 500)
-
-  document.addEventListener("touchstart", () => {
-    void tryPlayHeroVideo()
-  }, { once: true, passive: true })
-  document.addEventListener("click", () => {
-    void tryPlayHeroVideo()
-  }, { once: true })
-
+  startProjectSlider()
   loadProducts()
   loadProjectsLocal()
   loadPartnerLogosLocal()
 })
+
+onBeforeUnmount(() => {
+  if (projectSlideTimer) clearInterval(projectSlideTimer)
+})
 </script>
 
 <style scoped>
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 .line-clamp-5 {
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease;
+}
+
+.slide-right-enter-from {
+  transform: translateX(-12%);
+  opacity: 0.55;
+}
+
+.slide-right-leave-to {
+  transform: translateX(12%);
+  opacity: 0.25;
+}
+
+.slide-right-leave-active {
+  position: absolute;
+  inset: 0;
+}
 </style>
-
-

@@ -138,8 +138,8 @@
         <div class="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
           <div class="p-5 sm:p-6 border-b border-slate-100">
             <h2 class="text-lg font-bold text-slate-800">ข้อมูลติดต่อ</h2>
-            <p class="mt-1 text-sm text-slate-500">บริษัท เอ็มแอนด์บี อินโนเวทีฟ คอมเมิร์ซ จำกัด</p>
-            <p class="mt-1 text-sm text-slate-500">M&B INNOVATIVE COMMERCE Co., Ltd.</p>
+            <p class="mt-1 text-sm text-slate-500">probuild</p>
+            <p class="mt-1 text-sm text-slate-500">probuild</p>
           </div>
 
           <div class="p-5 sm:p-6 space-y-4 text-sm text-slate-700">

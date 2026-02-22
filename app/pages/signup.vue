@@ -4,7 +4,7 @@
       <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div class="p-6 border-b border-slate-100">
           <div class="flex items-center gap-3">
-            <img src="/MBLogo.png" alt="M&B" class="h-9 w-auto" />
+            <img src="/cropped-logo.png" alt="probuild" class="h-9 w-auto" />
             <div>
               <h1 class="text-xl font-bold text-slate-900">สมัครสมาชิก</h1>
               <p class="text-sm text-slate-500">สร้างบัญชีเพื่อเข้าใช้งานและเรียนคอร์ส</p>
@@ -132,7 +132,7 @@
       </div>
 
       <p class="mt-4 text-center text-xs text-slate-400">
-        © {{ new Date().getFullYear() }} M&B
+        © {{ new Date().getFullYear() }} probuild
       </p>
     </div>
   </div>
@@ -141,7 +141,7 @@
 <script setup lang="ts">
 import { ref } from "vue"
 
-useHead({ title: "Signup | M&B" })
+useHead({ title: "Signup | probuild" })
 
 const name = ref("")
 const email = ref("")
