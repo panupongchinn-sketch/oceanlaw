@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@iconify/vue": "^5.0.0",
+    "@supabase/supabase-js": "^2.99.0",
     "@tailwindcss/vite": "^4.1.18",
     "chart.js": "^4.5.1",
     "nuxt": "^4.2.2",

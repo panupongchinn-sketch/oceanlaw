@@ -5,6 +5,11 @@ export default defineNuxtConfig({
   srcDir: "app",
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  runtimeConfig: {
+    supabaseUrl: process.env.NUXT_SUPABASE_URL || process.env.SUPABASE_URL || "",
+    supabaseServiceRoleKey:
+      process.env.NUXT_SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "",
+  },
   app: {
     head: {
       link: [

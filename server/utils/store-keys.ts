@@ -1,7 +1,11 @@
 export const ALLOWED_STORE_KEYS = new Set([
   "projects",
   "products",
+  "articles",
+  "shades",
+  "shade_settings",
   "partners",
+  "promotions",
   "contact_messages",
   "invoice_requests",
   "training_courses",
