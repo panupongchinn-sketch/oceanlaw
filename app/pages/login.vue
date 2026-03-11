@@ -1,15 +1,50 @@
 ﻿<template>
-  <div class="relative min-h-[calc(100vh-0px)] overflow-hidden bg-[#f8fafc] text-slate-900">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_8%_12%,rgba(177,18,38,0.10),transparent_30%),radial-gradient(circle_at_85%_18%,rgba(177,18,38,0.07),transparent_36%),linear-gradient(180deg,#ffffff_0%,#f8fafc_55%,#f2f4f8_100%)]" aria-hidden="true"></div>
-    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#b11226]/35 to-transparent" aria-hidden="true"></div>
+  <div class="relative min-h-[calc(100vh-0px)] overflow-hidden bg-slate-950 text-slate-100">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/f248d603c9559d3dff1bb684011d9ae2.jpg');"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/75 to-blue-950/70"
+      aria-hidden="true"
+    ></div>
+
+    <div class="industrial-grid absolute inset-0 opacity-35" aria-hidden="true"></div>
 
     <div class="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl items-center px-4 py-12 sm:px-6 lg:px-8">
-      <div class="grid w-full justify-items-center">
-        <section class="w-full">
-          <div class="mx-auto w-full max-w-md rounded-2xl border border-slate-200/80 bg-white shadow-[0_18px_48px_rgba(15,23,42,0.12)]">
-            <div class="border-b border-slate-200 p-6">
+      <div class="grid w-full gap-8 lg:grid-cols-12 lg:items-center">
+        <section class="lg:col-span-6">
+          <div class="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+            <span class="inline-block h-2.5 w-2.5 rounded-full bg-cyan-300"></span>
+            <span class="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">SPORT FLOOR SOLUTIONS</span>
+          </div>
+
+          <h1 class="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            PROBUILD Sport Portal
+          </h1>
+
+          <div class="mt-4 max-w-xl space-y-1 text-sm leading-relaxed text-slate-200 sm:text-base">
+            <p class="font-semibold text-white">บริษัท โปร-บิลด์ (ประเทศไทย) จำกัด</p>
+            <p>335,337 ถนนช่างอากาศอุทิศ แขวงดอนเมือง</p>
+            <p>เขตดอนเมือง กรุงเทพมหานคร 10210</p>
+            <p class="pt-2">โทร: 0-2929-6199-200</p>
+            <p>แฟกซ์: 0-2929-5853</p>
+            <p class="pt-2">Hotline: 086-3223421, 086-3162034</p>
+            <p>
+              Email:
+              <a class="text-white hover:underline" href="mailto:info@probuildthai.com">info@probuildthai.com</a>,
+              <a class="text-[#ff6b3d] hover:underline" href="mailto:puchaya@probuildthai.com">puchaya@probuildthai.com</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="lg:col-span-6">
+          <div class="mx-auto w-full max-w-md rounded-2xl border border-slate-200/30 bg-white/92 shadow-2xl backdrop-blur-sm">
+            <div class="border-b border-slate-200/70 p-6">
               <div class="flex items-center gap-3">
-                <img src="/โอเชี่ยน1.jpg" alt="oceanlaw" class="h-10 w-auto" />
+                <img src="/cropped-logo.png" alt="probuild" class="h-10 w-auto" />
                 <div>
                   <h2 class="text-xl font-extrabold text-slate-900">เข้าสู่ระบบ</h2>
                   <p class="text-sm text-slate-600">กรอก User และ Password เพื่อเข้าใช้งาน</p>
@@ -25,7 +60,7 @@
                   type="email"
                   autocomplete="username"
                   placeholder="เช่น user@email.com"
-                  class="h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-slate-900 placeholder:text-slate-500 focus:border-[#b11226] focus:outline-none focus:ring-2 focus:ring-[#b11226]/20"
+                  class="h-11 w-full rounded-xl border border-slate-300 bg-slate-100 px-3 text-slate-900 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                   :disabled="loading"
                 />
               </div>
@@ -38,12 +73,12 @@
                     :type="showPw ? 'text' : 'password'"
                     autocomplete="current-password"
                     placeholder="••••••••"
-                    class="h-11 w-full rounded-xl border border-slate-300 bg-white px-3 pr-20 text-slate-900 placeholder:text-slate-500 focus:border-[#b11226] focus:outline-none focus:ring-2 focus:ring-[#b11226]/20"
+                    class="h-11 w-full rounded-xl border border-slate-300 bg-slate-100 px-3 pr-20 text-slate-900 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                     :disabled="loading"
                   />
                   <button
                     type="button"
-                    class="absolute right-2 top-1/2 h-8 -translate-y-1/2 rounded-md px-3 text-sm font-semibold text-slate-600 hover:bg-slate-100"
+                    class="absolute right-2 top-1/2 h-8 -translate-y-1/2 rounded-md px-3 text-sm font-semibold text-slate-600 hover:bg-slate-200/70"
                     @click="showPw = !showPw"
                     :disabled="loading"
                   >
@@ -58,7 +93,7 @@
 
               <button
                 type="submit"
-                class="h-11 w-full rounded-lg bg-[#b11226] font-bold text-white shadow-sm transition-colors hover:bg-[#8f0f1f] active:bg-[#700c18] disabled:cursor-not-allowed disabled:opacity-60"
+                class="h-11 w-full rounded-full bg-[#0B4AA2] font-bold text-white shadow-sm transition-colors hover:bg-[#083A7E] active:bg-[#062B5D] disabled:cursor-not-allowed disabled:opacity-60"
                 :disabled="loading"
               >
                 <span v-if="!loading">เข้าสู่ระบบ</span>
@@ -69,15 +104,15 @@
               </button>
 
               <div class="flex items-center justify-between pt-2 text-sm">
-                <NuxtLink to="/" class="text-slate-500 hover:text-[#b11226]">← กลับหน้าแรก</NuxtLink>
-                <NuxtLink to="/signup" class="font-semibold text-[#b11226] hover:text-[#8f0f1f]">
+                <NuxtLink to="/" class="text-slate-500 hover:text-[#0B4AA2]">← กลับหน้าแรก</NuxtLink>
+                <NuxtLink to="/signup" class="font-semibold text-[#0B4AA2] hover:text-[#083A7E]">
                   ยังไม่มีบัญชี? สมัครสมาชิก
                 </NuxtLink>
               </div>
             </form>
           </div>
 
-          <p class="mt-4 text-center text-xs text-slate-500">© {{ new Date().getFullYear() }} Oceanlaw</p>
+          <p class="mt-4 text-center text-xs text-slate-300">© {{ new Date().getFullYear() }} probuild</p>
         </section>
       </div>
     </div>
@@ -88,12 +123,12 @@
 import { computed, ref } from "vue"
 import { useRoute } from "vue-router"
 
-useHead({ title: "Login | Oceanlaw" })
+useHead({ title: "Login | probuild" })
 
 const route = useRoute()
 const redirectTo = computed(() => {
   const r = route.query.redirect
-  return typeof r === "string" && r.startsWith("/") ? r : "/admin/products"
+  return typeof r === "string" && r.startsWith("/") ? r : "/admin/projects-local"
 })
 
 const email = ref("")
@@ -129,4 +164,12 @@ const onLogin = async () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.industrial-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center;
+}
+</style>
