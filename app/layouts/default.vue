@@ -143,17 +143,6 @@
                     </svg>
                     Facebook
                   </a>
-                  <a
-                    href="https://lin.ee/5Qv8W9f"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex h-9 items-center gap-2 rounded-full bg-[#06c755] px-4 text-xs font-bold text-white transition hover:bg-[#04a746] sm:h-10 sm:text-sm"
-                  >
-                    <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-current" aria-hidden="true">
-                      <path d="M19.2 3.2H4.8A2.8 2.8 0 0 0 2 6v8a2.8 2.8 0 0 0 2.8 2.8h2.4V21l4.2-4.2h7.8A2.8 2.8 0 0 0 22 14V6a2.8 2.8 0 0 0-2.8-2.8zM8 9.2h1.2v3.6H11V14H8V9.2zm4 0h1.2V14H12V9.2zm2.8 0h1.2v3.6h1.8V14h-3V9.2z" />
-                    </svg>
-                    Line Official
-                  </a>
                 </div>
               </div>
             </div>
