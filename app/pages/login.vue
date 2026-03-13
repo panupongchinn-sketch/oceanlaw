@@ -29,9 +29,8 @@
             <p class="font-semibold text-white">บริษัท โปร-บิลด์ (ประเทศไทย) จำกัด</p>
             <p>335,337 ถนนช่างอากาศอุทิศ แขวงดอนเมือง</p>
             <p>เขตดอนเมือง กรุงเทพมหานคร 10210</p>
-            <p class="pt-2">โทร: 0-2929-6199-200</p>
-            <p>แฟกซ์: 0-2929-5853</p>
-            <p class="pt-2">Hotline: 086-3223421, 086-3162034</p>
+            <p class="pt-2">โทร: 088-9636222</p>
+            <p class="pt-2">Hotline: 099-1466222, 088-1436222</p>
             <p>
               Email:
               <a class="text-white hover:underline" href="mailto:info@probuildthai.com">info@probuildthai.com</a>,
@@ -44,7 +43,7 @@
           <div class="mx-auto w-full max-w-md rounded-2xl border border-slate-200/30 bg-white/92 shadow-2xl backdrop-blur-sm">
             <div class="border-b border-slate-200/70 p-6">
               <div class="flex items-center gap-3">
-                <img src="/cropped-logo.png" alt="probuild" class="h-10 w-auto" />
+                <img src="/1.ico" alt="probuild" class="h-10 w-auto" />
                 <div>
                   <h2 class="text-xl font-extrabold text-slate-900">เข้าสู่ระบบ</h2>
                   <p class="text-sm text-slate-600">กรอก User และ Password เพื่อเข้าใช้งาน</p>

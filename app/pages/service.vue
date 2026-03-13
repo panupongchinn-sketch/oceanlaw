@@ -1,251 +1,76 @@
 ﻿<template>
-  <div class="relative -mx-4 -my-8 min-h-[calc(100vh-120px)] overflow-hidden sm:-mx-6 lg:-mx-10">
-    <section class="relative isolate overflow-hidden">
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style="background-image: url('/16f347af2bafc6631b753cff99d30010.jpg');"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-900/82 to-blue-950/70"
-        aria-hidden="true"
-      ></div>
-      <div class="industrial-grid absolute inset-0 opacity-25" aria-hidden="true"></div>
-
-      <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-        <div class="max-w-3xl">
-          <p class="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">
-            Sports Construction Services
-          </p>
-          <h1 class="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            บริการวิศวกรรมและผลงานโครงการสนามกีฬา
-          </h1>
-          <p class="mt-4 text-sm leading-relaxed text-slate-200 sm:text-base">
-            ออกแบบ ติดตั้ง และดูแลระบบสนามกีฬา พร้อมแสดงผลงานโครงการจริงเพื่อใช้ประกอบการตัดสินใจและขอใบเสนอราคา
-          </p>
-
-          <div class="mt-8 flex flex-wrap gap-3">
-            <NuxtLink
-              to="/contact"
-              class="inline-flex h-11 items-center rounded-full bg-[#0B4AA2] px-6 text-sm font-bold text-white shadow-lg transition-colors hover:bg-[#083A7E]"
-            >
-              ขอใบเสนอราคา
-            </NuxtLink>
-            <a
-              href="#projects"
-              class="inline-flex h-11 items-center rounded-full border border-white/30 bg-white/10 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/20"
-            >
-              ดูผลงานโครงการ
-            </a>
-          </div>
+  <div class="service-page -mx-4 -my-8 sm:-mx-6 lg:-mx-10">
+    <section id="services" class="px-4 py-12 sm:px-6 lg:px-10 lg:py-14">
+      <div class="mx-auto max-w-7xl rounded-[28px] border border-[#cfe2d3] bg-white p-6 sm:p-8 lg:p-10">
+        <div class="mx-auto mb-8 max-w-3xl text-center">
+          <p class="inline-flex items-center rounded-full bg-[#e1f0e5] px-3 py-1 text-xs font-semibold text-[#2c7a2f]">บริการของเรา</p>
+          <h2 class="mt-3 text-2xl font-black tracking-tight text-[#1f4d22] sm:text-4xl">บริการครบวงจรสำหรับทุกธุรกิจ</h2>
+          <p class="mt-3 text-xs leading-relaxed text-[#4f6853] sm:text-sm">ชุดบริการที่ออกแบบให้รองรับทั้งผู้ประกอบการรายใหม่และองค์กรที่ต้องการระบบที่แม่นยำ</p>
         </div>
-      </div>
-    </section>
 
-    <section id="projects" class="bg-slate-100 px-4 py-12 sm:px-6 lg:px-10 lg:py-14">
-      <div class="mx-auto max-w-7xl">
-        <div class="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">ผลงานโครงการ</h2>
-            <p class="mt-1 text-sm text-slate-600">ตัวอย่างงานติดตั้งและปรับปรุงสนามกีฬาจากข้อมูลที่บันทึกในระบบ</p>
-          </div>
-
-          <div class="flex items-center gap-2 text-xs sm:text-sm">
-            <span class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 font-semibold text-slate-700">
-              ทั้งหมด {{ projects.length }} โครงการ
-            </span>
-            <button
-              type="button"
-              class="inline-flex h-9 items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 hover:bg-slate-50 sm:text-sm"
-              @click="loadProjects"
-            >
-              รีเฟรช
-            </button>
+        <div v-if="loadingServices" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div v-for="n in 8" :key="`service-skeleton-${n}`" class="rounded-2xl border border-[#d6e5da] bg-white p-5">
+            <div class="h-10 w-10 animate-pulse rounded-xl bg-[#e3eee8]"></div>
+            <div class="mt-4 h-6 w-3/4 animate-pulse rounded bg-[#e3eee8]"></div>
+            <div class="mt-3 h-4 w-full animate-pulse rounded bg-[#edf4f0]"></div>
+            <div class="mt-2 h-4 w-5/6 animate-pulse rounded bg-[#edf4f0]"></div>
           </div>
         </div>
 
-        <div v-if="loadingProjects" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          <div
-            v-for="n in 3"
-            :key="`project-skeleton-${n}`"
-            class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
-          >
-            <div class="aspect-[16/10] animate-pulse bg-slate-200"></div>
-            <div class="space-y-3 p-4">
-              <div class="h-5 w-3/4 animate-pulse rounded bg-slate-200"></div>
-              <div class="h-4 w-full animate-pulse rounded bg-slate-100"></div>
-              <div class="h-4 w-5/6 animate-pulse rounded bg-slate-100"></div>
-            </div>
-          </div>
+        <div v-else-if="!displayServices.length" class="rounded-2xl border border-dashed border-[#c9dacc] bg-white p-10 text-center text-[#537565]">
+          ยังไม่มีบริการที่เปิดใช้งาน
         </div>
 
-        <div v-else-if="projectError" class="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
-          <div class="font-bold">โหลดผลงานโครงการไม่สำเร็จ</div>
-          <div class="mt-1 text-sm">{{ projectError }}</div>
-        </div>
-
-        <div
-          v-else-if="!featuredProjects.length"
-          class="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm"
-        >
-          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 11h8m-8 4h5" />
-            </svg>
-          </div>
-          <div class="mt-4 text-lg font-extrabold text-slate-900">ยังไม่มีผลงานโครงการในระบบ</div>
-          <p class="mt-2 text-sm text-slate-500">สามารถเพิ่มข้อมูลจากหน้าแอดมิน เพื่อให้หน้า Service แสดงผลงานอัตโนมัติ</p>
-          <NuxtLink
-            to="/admin/projects-local"
-            class="mt-4 inline-flex h-10 items-center rounded-lg bg-[#0B4AA2] px-4 text-sm font-bold text-white hover:bg-[#083A7E]"
-          >
-            ไปหน้าเพิ่มโปรเจค
-          </NuxtLink>
-        </div>
-
-        <div v-else class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          <NuxtLink
-            v-for="project in featuredProjects"
-            :key="project.id"
-            :to="`/project/${project.id}`"
-            class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
-          >
-            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
-              <img
-                :src="projectCover(project) || fallbackImg"
-                :alt="project.name"
-                class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                loading="lazy"
-                @error="onImgError"
-              />
-              <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
-              <div class="absolute left-3 top-3 flex flex-wrap gap-2 text-[11px] font-bold">
-                <span v-if="project.category" class="rounded-full bg-white/90 px-2.5 py-1 text-slate-700">
-                  {{ project.category }}
-                </span>
-                <span v-if="project.status" :class="statusClass(project.status)">
-                  {{ statusText(project.status) }}
-                </span>
-              </div>
-            </div>
-
-            <div class="space-y-3 p-4">
-              <div>
-                <h3 class="line-clamp-2 text-lg font-extrabold leading-snug text-slate-900">
-                  {{ project.name }}
-                </h3>
-                <p class="mt-1 text-xs text-slate-500">
-                  อัปเดตล่าสุด {{ formatDate(project.updatedAt || project.createdAt) }}
-                </p>
-              </div>
-
-              <p class="line-clamp-3 text-sm leading-relaxed text-slate-600">
-                {{ project.description }}
-              </p>
-
-              <div class="flex flex-wrap gap-2 text-xs">
-                <span
-                  v-if="project.client"
-                  class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 font-semibold text-blue-700"
-                >
-                  ลูกค้า: {{ project.client }}
-                </span>
-                <span
-                  v-if="project.imageDataUrls?.length && project.imageDataUrls.length > 1"
-                  class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 font-semibold text-slate-700"
-                >
-                  {{ project.imageDataUrls.length }} รูป
-                </span>
-              </div>
-
-              <div class="pt-1">
-                <span class="inline-flex items-center gap-2 text-sm font-bold text-[#0B4AA2] group-hover:text-[#083A7E]">
-                  ดูรายละเอียดโครงการ
-                  <span aria-hidden="true">→</span>
-                </span>
-              </div>
-            </div>
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-white px-4 py-12 sm:px-6 lg:px-10 lg:py-14">
-      <div class="mx-auto max-w-7xl">
-        <div class="mb-7">
-          <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">ขอบเขตบริการหลัก</h2>
-          <p class="mt-1 text-sm text-slate-600">บริการแบบ Turnkey สำหรับสนามกีฬาและพื้นที่กิจกรรม</p>
-        </div>
-
-        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div v-else class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <article
-            v-for="service in services"
-            :key="service.title"
-            class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            v-for="(service, idx) in displayServices"
+            :key="service.id || `default-${idx}`"
+            class="group service-card relative rounded-2xl border border-[#cfe0d2] bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#5bae36] hover:bg-[#4a9a27]"
           >
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-[#0B4AA2]">
-              <span class="text-sm font-extrabold">{{ service.short }}</span>
-            </div>
-            <h3 class="mt-4 text-base font-extrabold text-slate-900">{{ service.title }}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ service.description }}</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-slate-50 px-4 py-12 sm:px-6 lg:px-10 lg:py-14">
-      <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-12">
-        <div class="lg:col-span-7">
-          <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">ขั้นตอนการทำงาน</h2>
-          <p class="mt-1 text-sm text-slate-600">กระบวนการชัดเจน ตรวจสอบความคืบหน้าได้ทุกช่วงงาน</p>
-
-          <div class="mt-6 space-y-3">
-            <div
-              v-for="(step, idx) in workflow"
-              :key="step.title"
-              class="flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
-            >
-              <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0B4AA2] text-xs font-extrabold text-white">
-                {{ idx + 1 }}
-              </div>
-              <div>
-                <h3 class="text-sm font-extrabold text-slate-900">{{ step.title }}</h3>
-                <p class="mt-1 text-sm text-slate-600">{{ step.description }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5">
-          <div class="rounded-2xl border border-slate-200 bg-slate-900 p-6 text-slate-100 shadow-lg">
-            <h3 class="text-lg font-extrabold">ทำไมลูกค้ากลุ่มสนามกีฬาเลือกเรา</h3>
-
-            <ul class="mt-4 space-y-3 text-sm text-slate-200">
-              <li
-                v-for="item in highlights"
-                :key="item"
-                class="flex items-start gap-3"
-              >
-                <span class="mt-1 inline-block h-2 w-2 rounded-full bg-cyan-300"></span>
-                <span>{{ item }}</span>
-              </li>
-            </ul>
-
-            <NuxtLink
-              to="/contact"
-              class="mt-6 inline-flex h-10 items-center rounded-lg bg-cyan-400 px-4 text-sm font-bold text-slate-900 transition hover:bg-cyan-300"
-            >
-              ปรึกษาทีมวิศวกร
+            <NuxtLink :to="serviceDetailPath(service.id)" class="absolute inset-0 z-10 rounded-2xl" :aria-label="`ดูรายละเอียด ${service.name}`">
+              <span class="sr-only">ดูรายละเอียด</span>
             </NuxtLink>
-          </div>
 
-          <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h4 class="text-sm font-extrabold text-slate-900">Service Coverage</h4>
-            <p class="mt-2 text-sm text-slate-600">
-              รองรับงานติดตั้งและบำรุงรักษาสนามกีฬาทั่วประเทศ พร้อมทีมซัพพอร์ตหลังส่งมอบและแผนดูแลระยะยาว
-            </p>
-          </div>
+            <div v-if="service.imageUrl" class="relative overflow-hidden rounded-xl border border-[#d6e5da] bg-[#edf4f0]">
+              <img
+                :src="service.imageUrl"
+                :alt="service.name || 'service image'"
+                class="h-36 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+              />
+            </div>
+            <div
+              v-else
+              class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#e7f1eb] text-[#2f8b33] transition-all duration-300 group-hover:bg-white/20 group-hover:text-white"
+            >
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path v-if="iconType(idx) === 'doc'" d="M7 3h7l5 5v13H7z" />
+                <path v-if="iconType(idx) === 'doc'" d="M14 3v6h6" />
+
+                <path v-else-if="iconType(idx) === 'calendar'" d="M7 4h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+                <path v-else-if="iconType(idx) === 'calendar'" d="M8 2v4M16 2v4M5 10h14" />
+
+                <path v-else-if="iconType(idx) === 'shield'" d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z" />
+
+                <path v-else-if="iconType(idx) === 'chart'" d="M4 19h16" />
+                <path v-else-if="iconType(idx) === 'chart'" d="M7 15l3-3 3 2 4-5" />
+
+                <path v-else d="M12 2v20M2 12h20" />
+              </svg>
+            </div>
+
+            <h3 class="mt-4 line-clamp-2 text-xl font-black leading-tight text-[#153d18] group-hover:text-white">{{ service.name }}</h3>
+            <p class="mt-3 line-clamp-3 text-sm leading-7 text-[#456149] group-hover:text-white/95">{{ service.description }}</p>
+
+            <div class="relative z-20 mt-6">
+              <NuxtLink
+                :to="serviceDetailPath(service.id)"
+                class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#3f9922] bg-[#3f9922] text-xl font-bold text-white transition group-hover:border-white/80 group-hover:bg-white group-hover:text-[#3f9922]"
+                aria-label="open service"
+              >
+                →
+              </NuxtLink>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -253,163 +78,115 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from "vue"
 
-useHead({
-  title: 'บริการ | probuild',
-})
+useHead({ title: "บริการ | Oceanlaw" })
 
-type ProjectStatus = 'draft' | 'doing' | 'done'
+type ServiceRow = {
+  id: string
+  name: string | null
+  description?: string | null
+  enabled?: boolean | null
+  image_url?: string | null
+  image_urls?: string[] | null
+}
 
-type ProjectRow = {
+type DisplayService = {
   id: string
   name: string
   description: string
-  category?: string
-  client?: string
-  status?: ProjectStatus | string
-  imageDataUrl?: string
-  imageDataUrls?: string[]
-  createdAt: string
-  updatedAt: string
+  enabled: boolean
+  imageUrl: string
 }
 
-const PROJECTS_KEY = 'projects'
+const SERVICES_KEY = "products"
 const { getValue } = useSharedStore()
-const fallbackImg = '/f248d603c9559d3dff1bb684011d9ae2.jpg'
 
-const projects = ref<ProjectRow[]>([])
-const loadingProjects = ref(true)
-const projectError = ref('')
+const services = ref<ServiceRow[]>([])
+const loadingServices = ref(true)
 
-const services = [
-  {
-    short: '01',
-    title: 'ออกแบบระบบและงานสนามกีฬา',
-    description: 'วิเคราะห์หน้างาน ออกแบบสเปกวัสดุและระบบให้เหมาะกับประเภทการใช้งานจริง',
-  },
-  {
-    short: '02',
-    title: 'ติดตั้งและควบคุมคุณภาพ',
-    description: 'ติดตั้งโดยทีมงานมืออาชีพ พร้อมตรวจสอบมาตรฐานและความเรียบร้อยก่อนส่งมอบ',
-  },
-  {
-    short: '03',
-    title: 'Maintenance & Overhaul',
-    description: 'บำรุงรักษาเชิงป้องกันและปรับปรุงสนามเดิมเพื่อยืดอายุการใช้งาน',
-  },
-  {
-    short: '04',
-    title: 'Energy & Safety Upgrade',
-    description: 'ปรับปรุงความปลอดภัย แสงสว่าง และองค์ประกอบที่เกี่ยวข้องกับมาตรฐานสนามกีฬา',
-  },
-]
+const defaultServices: DisplayService[] = [
+  { id: "d1", name: "ทำบัญชีรายเดือน", description: "บันทึกบัญชี ยื่นภาษี และรายงานการเงินครบ Outsource แทนจ้างพนักงาน", enabled: true },
+  { id: "d2", name: "ยื่นภาษีรายเดือน", description: "ภงด.1, 3, 53 และ ภ.พ.30 ยื่นตรงเวลาทุกเดือน", enabled: true },
+  { id: "d3", name: "ยื่นภาษีครึ่งปี (ภ.ง.ด.51)", description: "ประมาณการกำไรครึ่งปีและยื่นภาษีให้ถูกต้อง", enabled: true },
+  { id: "d4", name: "ปิดงบการเงินประจำปี", description: "จัดทำงบการเงินครบถ้วน ยื่น DBD + ภ.ง.ด.50", enabled: true },
+  { id: "d5", name: "ตรวจสอบบัญชี CPA", description: "รับรองงบโดยผู้สอบบัญชีรับอนุญาต", enabled: true },
+  { id: "d6", name: "จดทะเบียนบริษัท/หจก", description: "ดำเนินการจดทะเบียนครบวงจร พร้อมเอกสาร", enabled: true },
+  { id: "d7", name: "จด VAT", description: "จดทะเบียนภาษีมูลค่าเพิ่มสำหรับธุรกิจ", enabled: true },
+  { id: "d8", name: "ขึ้นทะเบียนประกันสังคม", description: "ดูแลเรื่องประกันสังคมนายจ้างและลูกจ้าง ม.33", enabled: true },
+  { id: "d9", name: "ทำบัญชีย้อนหลัง", description: "เคลียร์ภาษีย้อนหลัง แก้ปัญหาบัญชีค้าง", enabled: true },
+  { id: "d10", name: "เลิกบริษัท", description: "ดำเนินการเลิกกิจการถูกต้องตามกฎหมาย", enabled: true },
+  { id: "d11", name: "วางแผนภาษี", description: "ช่วยประหยัดภาษีอย่างถูกกฎหมาย วางแผนก่อนเสีย", enabled: true },
+  { id: "d12", name: "วางแผนภาษีก่อนเปิดบริษัท", description: "เริ่มถูกแต่แรก ไม่ต้องเสียภาษีย้อนหลัง", enabled: true },
+  { id: "d13", name: "วางระบบบัญชี", description: "ออกแบบระบบบัญชีให้เหมาะกับธุรกิจ", enabled: true },
+  { id: "d14", name: "วิทยากรอบรมภาษี", description: "อบรมความรู้ด้านภาษีสำหรับองค์กร", enabled: true },
+  { id: "d15", name: "เตรียมตัวสรรพากรตรวจ", description: "เตรียมเอกสาร ชี้แจงแบบมืออาชีพ", enabled: true },
+  { id: "d16", name: "อบรม FlowAccount / PEAK", description: "สอนใช้งานโปรแกรมบัญชีออนไลน์", enabled: true },
+].map((item) => ({ ...item, imageUrl: "" }))
 
-const workflow = [
-  {
-    title: 'สำรวจหน้างานและเก็บ Requirement',
-    description: 'เข้าหน้างาน วิเคราะห์ข้อจำกัด และกำหนดเป้าหมายร่วมกับลูกค้า',
-  },
-  {
-    title: 'ออกแบบและวางแผนดำเนินงาน',
-    description: 'จัดทำแบบ แนวทางวัสดุ และแผนงานให้สอดคล้องกับเวลาการใช้งานพื้นที่',
-  },
-  {
-    title: 'ติดตั้ง ทดสอบ และส่งมอบ',
-    description: 'ติดตั้งตามมาตรฐาน พร้อมตรวจสอบคุณภาพก่อนเปิดใช้งานจริง',
-  },
-  {
-    title: 'ดูแลหลังส่งมอบ',
-    description: 'แนะนำการดูแลรักษา พร้อมบริการบำรุงรักษาและซัพพอร์ตต่อเนื่อง',
-  },
-]
+const pickServiceImage = (item: ServiceRow) => {
+  if (Array.isArray(item?.image_urls) && item.image_urls.length) {
+    const first = String(item.image_urls.find(Boolean) || "").trim()
+    if (first) return first
+  }
+  return String(item?.image_url || "").trim()
+}
 
-const highlights = [
-  'ทีมงานมีประสบการณ์งานติดตั้งสนามกีฬาและงานปรับปรุงพื้นที่จริง',
-  'วางแผนงานร่วมกับลูกค้าเพื่อลดผลกระทบต่อการใช้งานพื้นที่',
-  'มีรายงานความคืบหน้าและเอกสารส่งมอบชัดเจนตลอดโครงการ',
-  'รองรับการดูแลระยะยาวและแผนบำรุงรักษาตามความต้องการ',
-]
+const displayServices = computed(() => {
+  const mapped: DisplayService[] = services.value
+    .map((item) => ({
+      id: String(item.id || ""),
+      name: String(item.name || ""),
+      description: String(item.description || ""),
+      enabled: item.enabled !== false,
+      imageUrl: pickServiceImage(item),
+    }))
+    .filter((item) => item.name)
 
-const featuredProjects = computed(() => {
-  return [...projects.value]
-    .sort((a, b) => {
-      const ta = new Date(a.updatedAt || a.createdAt || 0).getTime()
-      const tb = new Date(b.updatedAt || b.createdAt || 0).getTime()
-      return tb - ta
-    })
-    .slice(0, 6)
+  if (!mapped.length) return defaultServices.filter((item) => item.enabled !== false)
+  return mapped.filter((item) => item.enabled !== false)
 })
 
-const loadProjects = async () => {
-  loadingProjects.value = true
-  projectError.value = ''
+const iconType = (idx: number) => {
+  const set = ["calendar", "doc", "doc", "chart", "shield", "doc"]
+  return set[idx % set.length]
+}
+
+const serviceDetailPath = (serviceId: string) => {
+  const id = String(serviceId || "").trim()
+  if (!id) return "/service"
+  return `/service-detail/${encodeURIComponent(id)}`
+}
+
+const loadServices = async () => {
+  loadingServices.value = true
   try {
-    const rows = await getValue<ProjectRow>(PROJECTS_KEY)
-    projects.value = Array.isArray(rows) ? (rows as ProjectRow[]) : []
-  } catch (err: any) {
-    projectError.value = err?.message || 'Failed to load projects'
-    projects.value = []
+    const rows = await getValue<ServiceRow>(SERVICES_KEY)
+    services.value = Array.isArray(rows) ? rows : []
+  } catch (err) {
+    console.error("loadServices error:", err)
+    services.value = []
   } finally {
-    loadingProjects.value = false
-  }
-}
-
-const projectCover = (p: ProjectRow) => {
-  if (Array.isArray(p.imageDataUrls) && p.imageDataUrls.length) return p.imageDataUrls[0] || ''
-  return p.imageDataUrl || ''
-}
-
-const onImgError = (e: Event) => {
-  const el = e.target as HTMLImageElement | null
-  if (el) el.src = fallbackImg
-}
-
-const statusText = (status?: string) => {
-  switch ((status || '').toLowerCase()) {
-    case 'done':
-      return 'เสร็จแล้ว'
-    case 'doing':
-      return 'กำลังดำเนินการ'
-    case 'draft':
-      return 'ร่าง'
-    default:
-      return status || 'ไม่ระบุ'
-  }
-}
-
-const statusClass = (status?: string) => {
-  const v = (status || '').toLowerCase()
-  if (v === 'done') return 'rounded-full bg-emerald-500/95 px-2.5 py-1 text-white shadow'
-  if (v === 'doing') return 'rounded-full bg-amber-400/95 px-2.5 py-1 text-slate-900 shadow'
-  return 'rounded-full bg-slate-900/80 px-2.5 py-1 text-white shadow'
-}
-
-const formatDate = (iso?: string) => {
-  if (!iso) return '-'
-  try {
-    return new Date(iso).toLocaleDateString('th-TH', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    })
-  } catch {
-    return iso
+    loadingServices.value = false
   }
 }
 
 onMounted(() => {
-  loadProjects()
+  loadServices()
 })
 </script>
 
 <style scoped>
-.industrial-grid {
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.17) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.17) 1px, transparent 1px);
-  background-size: 44px 44px;
-  background-position: center;
+.service-page {
+  background: #ffffff;
+}
+
+.service-card {
+  box-shadow: 0 8px 18px rgba(51, 95, 58, 0.08);
+}
+
+.service-card:hover {
+  box-shadow: 0 16px 28px rgba(49, 121, 24, 0.34);
 }
 
 .line-clamp-2 {

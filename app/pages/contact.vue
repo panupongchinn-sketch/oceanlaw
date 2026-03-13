@@ -1,97 +1,20 @@
 ﻿<template>
-  <div class="contact-shell relative isolate">
-    <div class="contact-blob contact-blob-a" aria-hidden="true"></div>
-    <div class="contact-blob contact-blob-b" aria-hidden="true"></div>
-
-    <section
-      class="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white/85 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.35)] backdrop-blur-sm"
-    >
-      <img
-        src="/16f347af2bafc6631b753cff99d30010.jpg"
-        alt="สนามบาสเกตบอลในร่ม"
-        class="absolute inset-0 h-full w-full object-cover object-center"
-      />
-      <div class="absolute inset-0 bg-[linear-gradient(110deg,_rgba(255,255,255,0.94)_8%,_rgba(255,255,255,0.86)_42%,_rgba(255,255,255,0.72)_68%,_rgba(15,23,42,0.22)_100%)]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.10),_transparent_55%),radial-gradient(circle_at_80%_20%,_rgba(239,68,68,0.12),_transparent_50%)]"></div>
-      <div class="relative p-5 sm:p-8 lg:p-10">
-        <div class="grid grid-cols-1 xl:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-8 items-start">
-          <div>
-            <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-slate-600">
-              CONTACT PROBUILD
-            </div>
-            <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
-              ติดต่อเรา
-            </h1>
-            <p class="mt-3 max-w-2xl text-sm sm:text-base leading-7 text-slate-600">
-              ส่งข้อความหาเราได้เลย ทีมงานพร้อมตอบคำถามเรื่องสินค้า ใบเสนอราคา และการให้บริการติดตั้งอย่างรวดเร็ว
-            </p>
-
-            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div class="rounded-2xl border border-white/70 bg-white/80 p-4 shadow-sm">
-                <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">เวลาตอบกลับ</div>
-                <div class="mt-1 text-lg font-bold text-slate-900">เร็วที่สุด</div>
-                <div class="text-xs text-slate-500">ในเวลาทำการ</div>
-              </div>
-              <div class="rounded-2xl border border-white/70 bg-white/80 p-4 shadow-sm">
-                <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">ช่องทาง</div>
-                <div class="mt-1 text-lg font-bold text-slate-900">โทร / อีเมล</div>
-                <div class="text-xs text-slate-500">หรือส่งฟอร์มด้านล่าง</div>
-              </div>
-              <div class="rounded-2xl border border-white/70 bg-white/80 p-4 shadow-sm">
-                <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">บริการ</div>
-                <div class="mt-1 text-lg font-bold text-slate-900">ใบเสนอราคา</div>
-                <div class="text-xs text-slate-500">พร้อมให้คำแนะนำ</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 sm:p-5 shadow-sm">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <div class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">ติดต่อด่วน</div>
-                <div class="mt-1 text-xl font-bold text-slate-900">ทีมงาน probuild</div>
-              </div>
-              <button
-                class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                type="button"
-                @click="resetForm"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-                ล้างฟอร์ม
-              </button>
-            </div>
-
-            <div class="mt-4 space-y-3 text-sm">
-              <div class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3">
-                <div class="text-xs font-semibold text-slate-500">โทรศัพท์</div>
-                <div class="mt-1 font-semibold text-slate-900">0-2929-6200</div>
-              </div>
-              <div class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3">
-                <div class="text-xs font-semibold text-slate-500">อีเมล</div>
-                <div class="mt-1 font-semibold text-slate-900 break-all">info@probuildthai.com</div>
-              </div>
-              <button
-                class="w-full inline-flex items-center justify-center gap-2 h-11 px-4 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800"
-                type="button"
-                @click="goInvoice"
-              >
-                ขอใบเสนอราคา
-                <span class="text-red-300">→</span>
-              </button>
-            </div>
-          </div>
-        </div>
+  <div class="contact-shell">
+    <section class="rounded-[28px] border border-[#d7e4dc] bg-[#eef5f1] px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+      <div class="mx-auto max-w-4xl text-center">
+        <h1 class="text-3xl font-black tracking-tight text-[#102d24] sm:text-4xl lg:text-5xl">ติดต่อเรา</h1>
+        <p class="mt-3 text-sm leading-7 text-[#4c6558] sm:text-base">
+          ส่งข้อความหาเราได้เลย ทีมงานพร้อมตอบคำถามด้านบัญชี ภาษี และงานที่ปรึกษาธุรกิจอย่างรวดเร็ว
+        </p>
       </div>
     </section>
 
-    <div class="mt-7 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+    <div class="mt-8 grid grid-cols-1 items-start gap-7 lg:grid-cols-3">
       <section class="lg:col-span-2">
-        <div class="overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)] backdrop-blur-sm">
-          <div class="border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white px-5 py-5 sm:px-7 sm:py-6">
+        <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_56px_-32px_rgba(15,23,42,0.42)]">
+          <div class="border-b border-slate-100 bg-gradient-to-r from-slate-50 via-white to-slate-50 px-5 py-5 sm:px-7 sm:py-6">
             <div class="flex items-start gap-4">
-              <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-red-50 text-red-600 border border-red-100">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-red-100 bg-red-50 text-red-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10h8m-8 4h5m-8 6h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -160,6 +83,20 @@
 
               <div>
                 <label class="block text-sm font-semibold text-slate-700">หัวข้อ</label>
+                <div class="mt-2 flex flex-wrap gap-2">
+                  <button
+                    v-for="item in subjectOptions"
+                    :key="item"
+                    type="button"
+                    class="inline-flex h-9 items-center rounded-full border px-3 text-xs font-semibold transition sm:text-sm"
+                    :class="form.subject === item
+                      ? 'border-[#b11226] bg-[#b11226] text-white'
+                      : 'border-slate-300 bg-white text-slate-700 hover:border-[#b11226]/40 hover:text-[#b11226]'"
+                    @click="selectSubject(item)"
+                  >
+                    {{ item }}
+                  </button>
+                </div>
                 <input
                   v-model.trim="form.subject"
                   type="text"
@@ -174,22 +111,18 @@
                   v-model.trim="form.detail"
                   rows="6"
                   class="contact-textarea mt-2"
-                  placeholder="พิมพ์รายละเอียดที่ต้องการให้เราช่วย เช่น รุ่นสินค้า จำนวน จังหวัด และช่วงเวลาที่สะดวกให้ติดต่อกลับ..."
+                  placeholder="พิมพ์รายละเอียดที่ต้องการให้เราช่วย เช่น ประเภทธุรกิจ ปัญหาบัญชี/ภาษี เอกสารที่มี และช่วงเวลาที่สะดวกให้ติดต่อกลับ..."
                   required
                 />
                 <div class="mt-2 text-xs text-slate-500">
-                  แนะนำ: ระบุสินค้า/รุ่น จำนวน จังหวัด และช่วงเวลาที่สะดวกให้ติดต่อกลับ
+                  แนะนำ: ระบุประเภทธุรกิจ ประเด็นที่ต้องการปรึกษา และช่วงเวลาที่สะดวกให้ติดต่อกลับ
                 </div>
               </div>
 
-              <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div class="text-xs leading-5 text-slate-500">
-                    เมื่อกดส่ง ถือว่ายินยอมให้เราใช้ข้อมูลเพื่อการติดต่อกลับและให้คำแนะนำเบื้องต้น
-                  </div>
-
+              <div class="rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-50 to-white p-4">
+                <div class="flex justify-end">
                   <button
-                    class="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 active:bg-red-800 disabled:opacity-60 disabled:cursor-not-allowed"
+                    class="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#b11226] px-6 text-sm font-bold text-white shadow-[0_10px_20px_-10px_rgba(177,18,38,0.7)] transition hover:bg-[#8f0f1f] active:bg-[#700c18] disabled:cursor-not-allowed disabled:opacity-60"
                     :disabled="loading"
                     type="submit"
                   >
@@ -203,12 +136,12 @@
         </div>
       </section>
 
-      <aside class="lg:sticky lg:top-6 space-y-6">
-        <div class="overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.3)] backdrop-blur-sm">
+      <aside class="space-y-6 lg:sticky lg:top-6">
+        <div class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_24px_56px_-32px_rgba(15,23,42,0.38)]">
           <div class="border-b border-slate-100 px-5 py-5 sm:px-6">
             <h2 class="text-lg font-bold text-slate-900">ข้อมูลติดต่อ</h2>
-            <p class="mt-1 text-sm text-slate-500">probuild</p>
-            <p class="text-sm text-slate-500">พร้อมให้คำแนะนำสินค้าและบริการ</p>
+            <p class="mt-1 text-sm text-slate-500">Oceanlaw</p>
+            <p class="text-sm text-slate-500">พร้อมให้คำแนะนำด้านบัญชี ภาษี และธุรกิจ</p>
           </div>
 
           <div class="p-5 sm:p-6 space-y-4 text-sm text-slate-700">
@@ -219,35 +152,40 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </span>
-              <div>
-                <div class="font-semibold text-slate-900">ที่อยู่</div>
-                <div class="mt-1 text-slate-600">335,337 ถนนช่างอากาศอุทิศ แขวงดอนเมือง เขตดอนเมือง กรุงเทพมหานคร 10210</div>
+                <div>
+                  <div class="font-semibold text-slate-900">ที่อยู่</div>
+                  <div class="mt-1 text-slate-600">{{ officeAddress }}</div>
+                </div>
               </div>
-            </div>
 
             <div class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-3">
               <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-red-100 bg-red-50 text-red-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.128a11.042 11.042 0 005.516 5.516l1.128-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-              </span>
-              <div>
-                <div class="font-semibold text-slate-900">โทร</div>
-                <div class="mt-1 text-slate-600">0-2929-6200 / Hotline 086-3223421, 086-3162034</div>
+                </span>
+                <div>
+                  <div class="font-semibold text-slate-900">โทร</div>
+                  <div class="mt-1 space-y-1 text-slate-600">
+                    <div>
+                      สำนักงาน:
+                      <a :href="officePhoneHref" class="hover:text-red-700">{{ officePhone }}</a>
+                    </div>
+                    <div>
+                      Hotline บัญชี:
+                      <a :href="toTelHref(hotlines.accounting)" class="hover:text-red-700">{{ hotlines.accounting }}</a>
+                    </div>
+                    <div>
+                      Hotline ธุรกิจ:
+                      <a :href="toTelHref(hotlines.business)" class="hover:text-red-700">{{ hotlines.business }}</a>
+                    </div>
+                    <div>
+                      Email:
+                      <a :href="`mailto:${officeEmail}`" class="hover:text-red-700">{{ officeEmail }}</a>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-3">
-              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-red-100 bg-red-50 text-red-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 12H8m8 0l-3.5 3.5M16 12L12.5 8.5M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
-                </svg>
-              </span>
-              <div>
-                <div class="font-semibold text-slate-900">อีเมล</div>
-                <div class="mt-1 break-all text-slate-600">puchaya@probuildthai.com, info@probuildthai.com</div>
-              </div>
-            </div>
 
             <div class="rounded-2xl border border-slate-200 bg-white p-4">
               <div class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">เวลาทำการ</div>
@@ -256,38 +194,6 @@
           </div>
         </div>
 
-        <div class="overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.3)] backdrop-blur-sm">
-          <div class="border-b border-slate-100 px-5 py-4 sm:px-6">
-            <h2 class="text-lg font-bold text-slate-900">แผนที่</h2>
-          </div>
-          <div class="p-4 sm:p-5">
-            <iframe
-              title="Probuild Thailand Map"
-              src="https://www.google.com/maps?q=%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97%20%E0%B9%82%E0%B8%9B%E0%B8%A3-%E0%B8%9A%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C%20(%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2)%20%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94&output=embed"
-              class="h-full min-h-[220px] w-full rounded-2xl border border-slate-200"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
-
-        <div class="overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-[0_16px_40px_-24px_rgba(15,23,42,0.5)]">
-          <div class="p-5 sm:p-6">
-            <div class="text-xs font-semibold tracking-[0.14em] text-slate-300 uppercase">Need a quote?</div>
-            <h3 class="mt-2 text-lg font-bold">ต้องการใบเสนอราคาแบบรวดเร็ว</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">
-              ส่งรายละเอียดสินค้าและจำนวนที่ต้องการ ทีมงานจะช่วยประเมินและติดต่อกลับโดยเร็ว
-            </p>
-            <button
-              class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
-              type="button"
-              @click="goInvoice"
-            >
-              ไปหน้าใบเสนอราคา
-              <span class="text-red-300">→</span>
-            </button>
-          </div>
-        </div>
       </aside>
     </div>
   </div>
@@ -315,6 +221,18 @@ type ContactMessageRow = ContactForm & {
 const CONTACT_STORAGE_KEY = "contact_messages"
 const { getValue, setValue } = useSharedStore()
 
+const officePhone = "088-9636222"
+const hotlines = {
+  accounting: "099-1466222",
+  business: "088-1436222",
+}
+const officeEmail = "oceanlaw2557.hr@gmail.com"
+const officeAddress = "90/30 หมู่ที่ 5 ตำบลบางรักพัฒนา อำเภอบางบัวทอง จังหวัดนนทบุรี 11110"
+
+const toTelHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`
+
+const officePhoneHref = computed(() => toTelHref(officePhone))
+
 const form = ref<ContactForm>({
   full_name: "",
   phone: "",
@@ -323,6 +241,18 @@ const form = ref<ContactForm>({
   subject: "",
   detail: "",
 })
+
+const subjectOptions = [
+  "ขอใบเสนอราคา",
+  "สอบถามบริการบัญชี",
+  "สอบถามบริการภาษี",
+  "ขอคำปรึกษาธุรกิจ",
+  "นัดคุยกับทีมงาน",
+]
+
+const selectSubject = (subject: string) => {
+  form.value.subject = subject
+}
 
 const loading = ref(false)
 const error = ref("")
@@ -387,40 +317,13 @@ const submit = async () => {
   }
 }
 
-const goInvoice = async () => {
-  await navigateTo("/invoice")
-}
 </script>
 
 <style scoped>
 .contact-shell {
-  --blob-blue: rgba(59, 130, 246, 0.14);
-  --blob-red: rgba(239, 68, 68, 0.12);
-}
-
-.contact-blob {
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-  width: 16rem;
-  height: 16rem;
-  border-radius: 9999px;
-  filter: blur(22px);
-  opacity: 0.9;
-  animation: floatBlob 16s ease-in-out infinite;
-}
-
-.contact-blob-a {
-  top: -2rem;
-  left: -2rem;
-  background: var(--blob-blue);
-}
-
-.contact-blob-b {
-  top: 18rem;
-  right: -2.5rem;
-  background: var(--blob-red);
-  animation-delay: -6s;
+  background:
+    linear-gradient(180deg, rgba(19, 82, 55, 0.04) 0%, rgba(19, 82, 55, 0) 220px),
+    repeating-linear-gradient(-45deg, rgba(27, 86, 60, 0.03), rgba(27, 86, 60, 0.03) 1px, transparent 1px, transparent 18px);
 }
 
 .contact-input,
@@ -474,21 +377,5 @@ const goInvoice = async () => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-@keyframes floatBlob {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(0, 14px, 0) scale(1.05);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-blob {
-    animation: none;
-  }
 }
 </style>
