@@ -2,7 +2,7 @@
   <div class="relative min-h-[calc(100vh-0px)] overflow-hidden bg-slate-950 text-slate-100">
     <div
       class="absolute inset-0 bg-cover bg-center"
-      style="background-image: url('/f248d603c9559d3dff1bb684011d9ae2.jpg');"
+      style="background-image: url('/head-rate.jpg');"
       aria-hidden="true"
     ></div>
 

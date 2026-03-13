@@ -5,7 +5,7 @@
         <div class="mx-auto max-w-none px-4 sm:px-6 lg:px-10">
           <div class="flex flex-col gap-3 py-3 lg:min-h-[84px] lg:flex-row lg:items-center lg:gap-4 lg:py-2">
             <NuxtLink to="/" class="flex shrink-0 items-center gap-3">
-              <img src="/โอเชี่ยน1.jpg" alt="oceanlaw" class="h-12 w-auto object-contain sm:h-14 lg:h-16" />
+              <img src="/oceanlaw-logo.jpg" alt="oceanlaw" class="h-12 w-auto object-contain sm:h-14 lg:h-16" />
               <div class="leading-none">
                 <div class="text-2xl font-black tracking-tight text-[#b11226] sm:text-[2.2rem] lg:text-[2.8rem]">โอเชี่ยน แอนด์ ลอว์ กรุ๊ป</div>
               </div>
@@ -115,7 +115,7 @@
         <div class="mx-auto max-w-[1280px] px-4 py-4 sm:px-6 lg:px-8">
           <div class="flex flex-col items-center gap-5 md:flex-row md:flex-wrap md:justify-center md:gap-6 xl:flex-nowrap xl:gap-8">
             <div class="flex shrink-0 justify-center">
-              <img src="/โอเชี่ยน1.jpg" alt="oceanlaw logo" class="h-[96px] w-auto object-contain sm:h-[110px] md:h-[120px]" />
+              <img src="/oceanlaw-logo.jpg" alt="oceanlaw logo" class="h-[96px] w-auto object-contain sm:h-[110px] md:h-[120px]" />
             </div>
 
             <div class="w-full max-w-[560px] text-center">

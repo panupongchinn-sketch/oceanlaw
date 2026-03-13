@@ -232,7 +232,7 @@ const currentImageSrc = computed(() => {
 })
 
 useHead(() => ({
-  title: `${product.value?.name || 'รายละเอียดสินค้า'} | probuild`,
+  title: `${product.value?.name || 'รายละเอียดสินค้า'} | Oceanlaw`,
 }))
 
 const loadProduct = async () => {
@@ -336,7 +336,7 @@ watch(id, () => loadProduct())
 .hero-photo {
   position: absolute;
   inset: 0;
-  background-image: url('/f248d603c9559d3dff1bb684011d9ae2.jpg');
+  background-image: url('/head-rate.jpg');
   background-size: cover;
   background-position: center;
 }

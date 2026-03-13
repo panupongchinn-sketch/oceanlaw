@@ -3,7 +3,7 @@
     <section class="home-top relative overflow-hidden px-4 pb-2 pt-8 sm:px-6 sm:pt-10 lg:px-10">
       <div class="space-y-6">
         <section class="relative min-h-[280px] overflow-hidden rounded-3xl border border-white/20 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:min-h-[340px] sm:p-10">
-          <img src="/ChatGPT Image 10 มี.ค. 2569 11_49_17.png" alt="Oceanlaw accounting team" class="absolute inset-0 h-full w-full object-cover" />
+          <img src="/home-hero-accounting.png" alt="Oceanlaw accounting team" class="absolute inset-0 h-full w-full object-cover" />
         </section>
 
         <section class="rounded-3xl border border-[#d7e4dc] bg-white/95 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.10)] backdrop-blur sm:p-7">

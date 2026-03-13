@@ -17,7 +17,7 @@
             <p class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
               Sport Equipment Catalog
             </p>
-            <h1 class="mt-3 text-2xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">ผลิตภัณฑ์กีฬา PROBUILD</h1>
+            <h1 class="mt-3 text-2xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">ผลิตภัณฑ์กีฬา Oceanlaw</h1>
             <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-100 sm:text-base">
               เลือกดูสินค้าอุปกรณ์กีฬาและวัสดุพื้นสนาม แยกตามแบรนด์ พร้อมข้อมูลเบื้องต้นสำหรับการสั่งซื้อและขอใบเสนอราคา
             </p>
@@ -165,7 +165,7 @@
                   />
                   <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
                   <span class="absolute left-3 top-3 rounded-full bg-[#ff6b2c] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
-                    {{ p.brand || 'PROBUILD' }}
+                    {{ p.brand || 'Oceanlaw' }}
                   </span>
                 </div>
 
@@ -201,7 +201,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 
-useHead({ title: 'สินค้า | probuild sports' })
+useHead({ title: 'สินค้า | Oceanlaw' })
 
 type ProductRow = {
   id: string
@@ -215,7 +215,7 @@ type ProductRow = {
 
 const PRODUCTS_KEY = 'products'
 const { getValue } = useSharedStore()
-const fallbackImg = '/f248d603c9559d3dff1bb684011d9ae2.jpg'
+const fallbackImg = '/head-rate.jpg'
 
 const products = ref<ProductRow[]>([])
 const loading = ref(true)
@@ -285,7 +285,7 @@ const totalFiltered = computed(() => filteredProducts.value.length)
 
 const productSummary = (p: ProductRow) => {
   const category = p.category || 'อุปกรณ์กีฬา'
-  const brand = p.brand || 'PROBUILD'
+  const brand = p.brand || 'Oceanlaw'
   const unit = p.unit ? ` หน่วยนับ ${p.unit}` : ''
   return `สินค้า${category}จากแบรนด์ ${brand} เหมาะสำหรับงานสนามกีฬาและการฝึกซ้อม${unit}`
 }
