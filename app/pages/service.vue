@@ -31,7 +31,15 @@
               <span class="sr-only">ดูรายละเอียด</span>
             </NuxtLink>
 
+            <div v-if="service.imageUrl" class="relative overflow-hidden rounded-xl border border-[#d6e5da] bg-[#edf4f0]">
+              <img
+                :src="service.imageUrl"
+                :alt="service.name || 'service image'"
+                class="h-36 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+              />
+            </div>
             <div
+              v-else
               class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#e7f1eb] text-[#2f8b33] transition-all duration-300 group-hover:bg-white/20 group-hover:text-white"
             >
               <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -51,6 +59,12 @@
             </div>
 
             <h3 class="mt-4 line-clamp-2 text-xl font-black leading-tight text-[#153d18] group-hover:text-white">{{ service.name }}</h3>
+            <div
+              v-if="formatPrice(service.unit)"
+              class="mt-4 text-sm font-extrabold text-[#166534] transition-all duration-300 group-hover:text-white"
+            >
+              {{ formatPrice(service.unit) }}
+            </div>
             <p class="mt-3 line-clamp-3 text-sm leading-7 text-[#456149] group-hover:text-white/95">{{ service.description }}</p>
 
             <div class="relative z-20 mt-6">
@@ -78,7 +92,19 @@ type ServiceRow = {
   id: string
   name: string | null
   description?: string | null
+  unit?: string | null
   enabled?: boolean | null
+  image_url?: string | null
+  image_urls?: string[] | null
+}
+
+type DisplayService = {
+  id: string
+  name: string
+  description: string
+  unit: string
+  enabled: boolean
+  imageUrl: string
 }
 
 const SERVICES_KEY = "products"
@@ -87,7 +113,7 @@ const { getValue } = useSharedStore()
 const services = ref<ServiceRow[]>([])
 const loadingServices = ref(true)
 
-const defaultServices: ServiceRow[] = [
+const defaultServices: DisplayService[] = [
   { id: "d1", name: "ทำบัญชีรายเดือน", description: "บันทึกบัญชี ยื่นภาษี และรายงานการเงินครบ Outsource แทนจ้างพนักงาน", enabled: true },
   { id: "d2", name: "ยื่นภาษีรายเดือน", description: "ภงด.1, 3, 53 และ ภ.พ.30 ยื่นตรงเวลาทุกเดือน", enabled: true },
   { id: "d3", name: "ยื่นภาษีครึ่งปี (ภ.ง.ด.51)", description: "ประมาณการกำไรครึ่งปีและยื่นภาษีให้ถูกต้อง", enabled: true },
@@ -104,15 +130,37 @@ const defaultServices: ServiceRow[] = [
   { id: "d14", name: "วิทยากรอบรมภาษี", description: "อบรมความรู้ด้านภาษีสำหรับองค์กร", enabled: true },
   { id: "d15", name: "เตรียมตัวสรรพากรตรวจ", description: "เตรียมเอกสาร ชี้แจงแบบมืออาชีพ", enabled: true },
   { id: "d16", name: "อบรม FlowAccount / PEAK", description: "สอนใช้งานโปรแกรมบัญชีออนไลน์", enabled: true },
-]
+].map((item) => ({ ...item, imageUrl: "", unit: "" }))
+
+const pickServiceImage = (item: ServiceRow) => {
+  if (Array.isArray(item?.image_urls) && item.image_urls.length) {
+    const first = String(item.image_urls.find(Boolean) || "").trim()
+    if (first) return first
+  }
+  return String(item?.image_url || "").trim()
+}
+
+const formatPrice = (value?: string | null) => {
+  const raw = String(value || "").trim()
+  if (!raw) return ""
+
+  const normalized = raw.replace(/,/g, "").replace(/\s*บาท$/u, "").trim()
+  if (!/^\d+(\.\d+)?$/.test(normalized)) return raw
+
+  const [integerPart, decimalPart] = normalized.split(".")
+  const formattedInt = Number(integerPart).toLocaleString("en-US")
+  return decimalPart ? `${formattedInt}.${decimalPart} บาท` : `${formattedInt} บาท`
+}
 
 const displayServices = computed(() => {
-  const mapped = services.value
+  const mapped: DisplayService[] = services.value
     .map((item) => ({
       id: String(item.id || ""),
       name: String(item.name || ""),
       description: String(item.description || ""),
+      unit: String(item.unit || ""),
       enabled: item.enabled !== false,
+      imageUrl: pickServiceImage(item),
     }))
     .filter((item) => item.name)
 

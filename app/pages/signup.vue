@@ -4,7 +4,7 @@
       <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div class="p-6 border-b border-slate-100">
           <div class="flex items-center gap-3">
-            <img src="/โอเชี่ยน1.jpg" alt="oceanlaw" class="h-9 w-auto" />
+            <img src="/oceanlaw-logo.jpg" alt="oceanlaw" class="h-9 w-auto" />
             <div>
               <h1 class="text-xl font-bold text-slate-900">สมัครสมาชิก</h1>
               <p class="text-sm text-slate-500">สร้างบัญชีเพื่อเข้าใช้งานและเรียนคอร์ส</p>
@@ -123,7 +123,7 @@
 
             <div class="text-slate-600">
               มีบัญชีอยู่แล้ว?
-              <NuxtLink to="/login" class="font-semibold text-red-600 hover:text-red-700">
+              <NuxtLink to="/oceanlogin" class="font-semibold text-red-600 hover:text-red-700">
                 เข้าสู่ระบบ
               </NuxtLink>
             </div>
@@ -187,7 +187,7 @@ const handleSignup = async () => {
     confirmPassword.value = ""
 
     setTimeout(() => {
-      navigateTo("/login")
+      navigateTo("/oceanlogin")
     }, 1200)
   } catch (err: any) {
     errorMessage.value = err?.message || "เกิดข้อผิดพลาด"

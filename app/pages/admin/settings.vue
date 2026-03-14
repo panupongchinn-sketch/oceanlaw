@@ -328,7 +328,7 @@ const deleteUser = (id: string) => {
   const session = safeParse<any | null>(localStorage.getItem(SESSION_KEY), null)
   if (session?.user?.id === id) {
     localStorage.removeItem(SESSION_KEY)
-    navigateTo("/login")
+    navigateTo("/oceanlogin")
     return
   }
 

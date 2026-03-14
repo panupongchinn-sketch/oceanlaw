@@ -215,7 +215,7 @@ type ProductRow = {
 
 const PRODUCTS_KEY = 'products'
 const { getValue } = useSharedStore()
-const fallbackImg = '/f248d603c9559d3dff1bb684011d9ae2.jpg'
+const fallbackImg = '/head-rate.jpg'
 
 const products = ref<ProductRow[]>([])
 const loading = ref(true)
@@ -286,7 +286,7 @@ const totalFiltered = computed(() => filteredProducts.value.length)
 const productSummary = (p: ProductRow) => {
   const category = p.category || 'อุปกรณ์กีฬา'
   const brand = p.brand || 'Oceanlaw'
-  const unit = p.unit ? ` หน่วยนับ ${p.unit}` : ''
+  const unit = p.unit ? ` ราคา ${p.unit}` : ''
   return `สินค้า${category}จากแบรนด์ ${brand} เหมาะสำหรับงานสนามกีฬาและการฝึกซ้อม${unit}`
 }
 

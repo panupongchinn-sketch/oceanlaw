@@ -88,12 +88,12 @@
             </div>
 
             <div>
-               <label class="mb-1 block text-sm font-semibold text-slate-700">หน่วยนับ</label>
+               <label class="mb-1 block text-sm font-semibold text-slate-700">ราคา</label>
               <input
                 v-model.trim="form.unit"
                 type="text"
                  class="h-11 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-[#ff6b2c]/30"
-                placeholder="เช่น ตร.ม."
+                placeholder="เช่น 5,000 บาท"
               />
             </div>
           </div>
@@ -218,20 +218,33 @@
               class="rounded-xl border border-slate-200 bg-slate-50 p-4"
             >
               <div class="flex items-start justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="truncate font-semibold text-slate-900">{{ p.name || '-' }}</div>
-                  <div v-if="p.description" class="mt-1 line-clamp-2 text-xs text-slate-600">{{ p.description }}</div>
-                  <div class="mt-1 text-xs text-slate-600">
-                    กลุ่มลูกค้า: {{ p.brand || '-' }} | โค้ดบริการ: {{ p.sku || '-' }}
+                <div class="flex min-w-0 items-start gap-3">
+                  <div
+                    v-if="productThumb(p)"
+                    class="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white"
+                  >
+                    <img
+                      :src="productThumb(p) || ''"
+                      :alt="p.name || 'service image'"
+                      class="h-full w-full object-cover"
+                    />
                   </div>
-                  <div class="mt-1 text-xs text-slate-500">
-                    หมวดหมู่: {{ p.category || '-' }} | หน่วยนับ: {{ p.unit || '-' }}
-                  </div>
-                  <div class="mt-1 text-xs text-slate-500">
-                    รูป: {{ p.image_urls?.length || (p.image_url ? 1 : 0) }} รูป
-                  </div>
-                  <div class="mt-1 text-xs font-semibold" :class="p.enabled === false ? 'text-rose-600' : 'text-emerald-700'">
-                    สถานะเมนู: {{ p.enabled === false ? 'ปิด' : 'เปิด' }}
+
+                  <div class="min-w-0">
+                    <div class="truncate font-semibold text-slate-900">{{ p.name || '-' }}</div>
+                    <div v-if="p.description" class="mt-1 line-clamp-2 text-xs text-slate-600">{{ p.description }}</div>
+                    <div class="mt-1 text-xs text-slate-600">
+                      กลุ่มลูกค้า: {{ p.brand || '-' }} | โค้ดบริการ: {{ p.sku || '-' }}
+                    </div>
+                    <div class="mt-1 text-xs text-slate-500">
+                      หมวดหมู่: {{ p.category || '-' }} | ราคา: {{ p.unit || '-' }}
+                    </div>
+                    <div class="mt-1 text-xs text-slate-500">
+                      รูป: {{ p.image_urls?.length || (p.image_url ? 1 : 0) }} รูป
+                    </div>
+                    <div class="mt-1 text-xs font-semibold" :class="p.enabled === false ? 'text-rose-600' : 'text-emerald-700'">
+                      สถานะเมนู: {{ p.enabled === false ? 'ปิด' : 'เปิด' }}
+                    </div>
                   </div>
                 </div>
 
@@ -333,6 +346,14 @@ const uid = () => {
     return (globalThis as any).crypto.randomUUID() as string
   }
   return `prod_${Math.random().toString(16).slice(2)}_${Date.now()}`
+}
+
+const productThumb = (row: ProductRow) => {
+  if (Array.isArray(row?.image_urls) && row.image_urls.length) {
+    const first = String(row.image_urls.find(Boolean) || "").trim()
+    if (first) return first
+  }
+  return String(row?.image_url || "").trim()
 }
 
 const normalizeRows = (rows: any[]): ProductRow[] =>

@@ -29,11 +29,6 @@
           </div>
 
           <div class="p-5 sm:p-7">
-            <div class="mb-5 flex flex-wrap items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600">
-              <span class="inline-flex items-center rounded-full bg-white px-2.5 py-1 font-semibold text-slate-700">ตอบกลับภายใน 1 วันทำการ</span>
-              <span class="inline-flex items-center rounded-full bg-white px-2.5 py-1 font-semibold text-slate-700">ข้อมูลของคุณจะถูกเก็บเป็นความลับ</span>
-            </div>
-
             <div v-if="success" class="mb-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
               ส่งข้อความเรียบร้อยแล้ว ขอบคุณครับ/ค่ะ
             </div>
@@ -185,8 +180,8 @@
                       <a :href="toTelHref(hotlines.business)" class="hover:text-red-700">{{ hotlines.business }}</a>
                     </div>
                     <div>
-                      แฟกซ์:
-                      <span>{{ faxPhone }}</span>
+                      Email:
+                      <a :href="`mailto:${officeEmail}`" class="hover:text-red-700">{{ officeEmail }}</a>
                     </div>
                   </div>
                 </div>
@@ -226,12 +221,12 @@ type ContactMessageRow = ContactForm & {
 const CONTACT_STORAGE_KEY = "contact_messages"
 const { getValue, setValue } = useSharedStore()
 
-const officePhone = "0-2929-6200"
-const faxPhone = "0-2929-5853"
+const officePhone = "088-9636222"
 const hotlines = {
-  accounting: "086-3223421",
-  business: "086-3162034",
+  accounting: "099-1466222",
+  business: "088-1436222",
 }
+const officeEmail = "oceanlaw2557.hr@gmail.com"
 const officeAddress = "90/30 หมู่ที่ 5 ตำบลบางรักพัฒนา อำเภอบางบัวทอง จังหวัดนนทบุรี 11110"
 
 const toTelHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`

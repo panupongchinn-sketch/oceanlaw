@@ -3,7 +3,7 @@
     <section class="home-top relative overflow-hidden px-4 pb-2 pt-8 sm:px-6 sm:pt-10 lg:px-10">
       <div class="space-y-6">
         <section class="relative min-h-[280px] overflow-hidden rounded-3xl border border-white/20 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:min-h-[340px] sm:p-10">
-          <img src="/ChatGPT Image 10 มี.ค. 2569 11_49_17.png" alt="Oceanlaw accounting team" class="absolute inset-0 h-full w-full object-cover" />
+          <img src="/home-hero-accounting.png" alt="Oceanlaw accounting team" class="absolute inset-0 h-full w-full object-cover" />
         </section>
 
         <section class="rounded-3xl border border-[#d7e4dc] bg-white/95 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.10)] backdrop-blur sm:p-7">
@@ -12,6 +12,29 @@
           <p class="mt-3 text-sm leading-7 text-slate-700 sm:text-base sm:leading-8">
             รับทำบัญชี ยื่นภาษี ประกันสังคม จดทะเบียนบริษัท และที่ปรึกษาด้านระบบบัญชีและการวางแผนภาษี เพื่อให้ผู้ประกอบการตัดสินใจทางการเงินได้อย่างมั่นใจ
           </p>
+          <div class="mt-5 flex flex-wrap items-center gap-3">
+            <a
+              :href="facebookUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex h-11 items-center gap-2 rounded-full bg-[#1877f2] px-5 text-sm font-bold text-white shadow-sm transition hover:bg-[#1666d9]"
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+                <path d="M13.5 8H16V5h-2.5C10.7 5 9 6.7 9 9.5V12H7v3h2v6h3v-6h2.4l.6-3H12V9.7c0-1 .3-1.7 1.5-1.7z" />
+              </svg>
+              Facebook
+            </a>
+            <button
+              type="button"
+              @click="openLineModal"
+              class="inline-flex h-11 items-center gap-2 rounded-full bg-[#06c755] px-5 text-sm font-bold text-white shadow-sm transition hover:bg-[#04a746]"
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+                <path d="M19.2 3.2H4.8A2.8 2.8 0 0 0 2 6v8a2.8 2.8 0 0 0 2.8 2.8h2.4V21l4.2-4.2h7.8A2.8 2.8 0 0 0 22 14V6a2.8 2.8 0 0 0-2.8-2.8zM8 9.2h1.2v3.6H11V14H8V9.2zm4 0h1.2V14H12V9.2zm2.8 0h1.2v3.6h1.8V14h-3V9.2z" />
+              </svg>
+              Line Official
+            </button>
+          </div>
         </section>
 
         <section id="articles" class="px-1 pb-2 pt-2 sm:px-2">
@@ -37,7 +60,14 @@
                 <span class="sr-only">ดูรายละเอียด</span>
               </NuxtLink>
 
-              <div class="flex h-14 w-14 items-center justify-center rounded-[1.4rem] bg-[#edf3ef] text-[#1b7a52] sm:h-20 sm:w-20">
+              <div v-if="serviceImage(service)" class="overflow-hidden rounded-[1.4rem] border border-[#d8e3dd] bg-[#edf3ef]">
+                <img
+                  :src="serviceImage(service)"
+                  :alt="service.name || 'service image'"
+                  class="h-32 w-full object-cover sm:h-40"
+                />
+              </div>
+              <div v-else class="flex h-14 w-14 items-center justify-center rounded-[1.4rem] bg-[#edf3ef] text-[#1b7a52] sm:h-20 sm:w-20">
                 <svg v-if="serviceIcon(service) === 'calculator'" viewBox="0 0 24 24" class="h-8 w-8 sm:h-10 sm:w-10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                   <rect x="6" y="3" width="12" height="18" rx="2"></rect>
                   <path d="M9 7h6"></path>
@@ -70,6 +100,12 @@
               </div>
 
               <h3 class="mt-5 line-clamp-3 text-[1.05rem] font-black leading-tight text-[#163027] sm:text-2xl">{{ service.name }}</h3>
+              <div
+                v-if="formatPrice(service.unit)"
+                class="mt-4 text-sm font-extrabold text-[#166534] sm:text-base"
+              >
+                {{ formatPrice(service.unit) }}
+              </div>
               <p class="mt-3 line-clamp-5 text-sm leading-relaxed text-[#5f7f71] sm:line-clamp-3 sm:text-base sm:text-slate-700">{{ service.description }}</p>
 
               <ul v-if="serviceHighlights(service).length" class="mt-4 hidden space-y-2 text-sm text-slate-800 sm:block">
@@ -157,6 +193,45 @@
         </div>
       </section>
     </section>
+
+    <transition name="line-modal">
+      <div
+        v-if="lineModalOpen"
+        class="fixed inset-0 z-[90] flex items-center justify-center bg-slate-900/45 p-4"
+        @click.self="closeLineModal"
+      >
+        <div class="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_20px_48px_rgba(15,23,42,0.28)] sm:p-6">
+          <h3 class="text-lg font-extrabold text-slate-900">Line Official</h3>
+          <p class="mt-1 text-sm text-slate-500">สแกน QR หรือเพิ่มด้วย ID</p>
+
+          <div class="mt-4 flex justify-center">
+            <img :src="lineQrImage" alt="LINE QR" class="h-52 w-52 rounded-xl border border-slate-200 bg-white p-1" />
+          </div>
+
+          <p class="mt-4 text-center text-sm text-slate-700">
+            LINE ID:
+            <span class="font-extrabold text-[#166534]">{{ lineContactId }}</span>
+          </p>
+
+          <div class="mt-5 flex items-center justify-end gap-2">
+            <button
+              type="button"
+              class="inline-flex h-10 items-center rounded-lg border border-slate-300 px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              @click="copyLineId"
+            >
+              {{ lineCopied ? "คัดลอกแล้ว" : "คัดลอก ID" }}
+            </button>
+            <button
+              type="button"
+              class="inline-flex h-10 items-center rounded-lg bg-[#166534] px-4 text-sm font-semibold text-white transition hover:bg-[#14532d]"
+              @click="closeLineModal"
+            >
+              ปิด
+            </button>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -176,6 +251,7 @@ type ServiceRow = {
   id: string
   name: string
   description?: string
+  unit?: string | null
   image_url?: string | null
   image_urls?: string[] | null
 }
@@ -183,12 +259,17 @@ type ServiceRow = {
 const ARTICLES_KEY = "articles"
 const SERVICES_KEY = "products"
 const fallbackImg = "https://picsum.photos/seed/accounting/1200/900"
+const facebookUrl = "https://www.facebook.com/OceanAndLawGroup"
+const lineContactId = "0889636222"
+const lineQrImage = "/349.jpg"
 const { getValue } = useSharedStore()
 
 const articles = ref<ArticleRow[]>([])
 const articlesLoaded = ref(false)
 const services = ref<ServiceRow[]>([])
 const servicesLoaded = ref(false)
+const lineModalOpen = ref(false)
+const lineCopied = ref(false)
 
 const featuredServices = computed(() => [...services.value].slice(0, 6))
 const featuredArticles = computed(() => [...articles.value].slice(0, 3))
@@ -203,6 +284,14 @@ const serviceIcon = (service: ServiceRow) => {
   return "document"
 }
 
+const serviceImage = (service: ServiceRow) => {
+  if (Array.isArray(service?.image_urls) && service.image_urls.length) {
+    const first = String(service.image_urls.find(Boolean) || "").trim()
+    if (first) return first
+  }
+  return String(service?.image_url || "").trim()
+}
+
 const serviceHighlights = (s: ServiceRow) => {
   const text = String(s.description || "")
   return text
@@ -212,9 +301,39 @@ const serviceHighlights = (s: ServiceRow) => {
     .slice(0, 3)
 }
 
+const formatPrice = (value?: string | null) => {
+  const raw = String(value || "").trim()
+  if (!raw) return ""
+
+  const normalized = raw.replace(/,/g, "").replace(/\s*บาท$/u, "").trim()
+  if (!/^\d+(\.\d+)?$/.test(normalized)) return raw
+
+  const [integerPart, decimalPart] = normalized.split(".")
+  const formattedInt = Number(integerPart).toLocaleString("en-US")
+  return decimalPart ? `${formattedInt}.${decimalPart} บาท` : `${formattedInt} บาท`
+}
+
 const onImgError = (e: Event) => {
   const el = e.target as HTMLImageElement | null
   if (el) el.src = fallbackImg
+}
+
+const openLineModal = () => {
+  lineCopied.value = false
+  lineModalOpen.value = true
+}
+
+const closeLineModal = () => {
+  lineModalOpen.value = false
+}
+
+const copyLineId = async () => {
+  try {
+    await navigator.clipboard.writeText(lineContactId)
+    lineCopied.value = true
+  } catch (e) {
+    console.error("copyLineId error:", e)
+  }
 }
 
 const serviceDetailPath = (serviceId: string) => {
@@ -258,6 +377,7 @@ const loadServicesLocal = async () => {
           id: String(item?.id || ""),
           name: String(item?.name || ""),
           description: String(item?.description || ""),
+          unit: item?.unit == null ? null : String(item.unit),
         }))
       : []
   } catch (e) {
@@ -329,5 +449,15 @@ onMounted(() => {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.line-modal-enter-active,
+.line-modal-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.line-modal-enter-from,
+.line-modal-leave-to {
+  opacity: 0;
 }
 </style>
