@@ -128,24 +128,11 @@
           <div v-else class="space-y-3">
             <div v-for="a in articles" :key="a.id" class="rounded-xl border border-slate-200 bg-slate-50 p-4">
               <div class="flex items-start justify-between gap-3">
-                <div class="flex min-w-0 items-start gap-3">
-                  <div
-                    v-if="a.imageDataUrl"
-                    class="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white"
-                  >
-                    <img
-                      :src="a.imageDataUrl"
-                      :alt="a.title || 'article image'"
-                      class="h-full w-full object-cover"
-                    />
-                  </div>
-
-                  <div class="min-w-0">
-                    <div class="truncate font-semibold text-slate-900">{{ a.title || "-" }}</div>
-                    <div v-if="a.content" class="mt-1 line-clamp-3 text-xs text-slate-600">{{ a.content }}</div>
-                    <div class="mt-1 text-xs text-slate-500">
-                      อัปเดต: {{ formatDate(a.updatedAt || a.createdAt) }}
-                    </div>
+                <div class="min-w-0">
+                  <div class="truncate font-semibold text-slate-900">{{ a.title || "-" }}</div>
+                  <div v-if="a.content" class="mt-1 line-clamp-3 text-xs text-slate-600">{{ a.content }}</div>
+                  <div class="mt-1 text-xs text-slate-500">
+                    อัปเดต: {{ formatDate(a.updatedAt || a.createdAt) }}
                   </div>
                 </div>
 

@@ -22,14 +22,6 @@
           </p>
           <h1 class="mt-3 text-2xl font-black tracking-tight text-[#163027] sm:text-4xl">{{ service.name }}</h1>
 
-          <div v-if="service.imageUrl" class="mt-5 overflow-hidden rounded-2xl border border-[#dbe9df] bg-white">
-            <img
-              :src="service.imageUrl"
-              :alt="service.name || 'service image'"
-              class="h-[240px] w-full object-cover sm:h-[320px]"
-            />
-          </div>
-
           <div class="mt-5 rounded-2xl border border-[#dbe9df] bg-[#f7fbf8] p-4 sm:p-5">
             <h2 class="text-base font-extrabold text-[#1d3e31] sm:text-lg">ขอบเขตงาน</h2>
             <p class="mt-2 whitespace-pre-line text-sm leading-7 text-slate-700 sm:text-base">
@@ -59,7 +51,7 @@
               ติดต่อเพื่อขอใบเสนอราคา
             </NuxtLink>
             <a
-              href="tel:0889636222"
+              href="tel:0863223421"
               class="inline-flex h-11 items-center justify-center rounded-2xl border-2 border-[#166534] px-4 text-sm font-bold text-[#166534] transition hover:bg-[#f0fdf4]"
             >
               โทรติดต่อทันที
@@ -79,15 +71,12 @@ type ServiceRow = {
   name?: string | null
   description?: string | null
   enabled?: boolean | null
-  image_url?: string | null
-  image_urls?: string[] | null
 }
 
 type ServiceDetail = {
   id: string
   name: string
   description: string
-  imageUrl: string
 }
 
 const route = useRoute()
@@ -101,7 +90,7 @@ const defaultServices: ServiceDetail[] = [
   { id: "d4", name: "ปิดงบการเงินประจำปี", description: "จัดทำงบการเงินครบถ้วน ยื่น DBD + ภ.ง.ด.50" },
   { id: "d5", name: "ตรวจสอบบัญชี CPA", description: "รับรองงบโดยผู้สอบบัญชีรับอนุญาต" },
   { id: "d6", name: "จดทะเบียนบริษัท/หจก", description: "ดำเนินการจดทะเบียนครบวงจร พร้อมเอกสาร" },
-].map((item) => ({ ...item, imageUrl: "" }))
+]
 
 const routeId = computed(() => {
   const raw = String(route.params.id || "")
@@ -129,19 +118,10 @@ useHead(() => ({
   title: `${service.value?.name || "รายละเอียดบริการ"} | Oceanlaw`,
 }))
 
-const pickServiceImage = (item: ServiceRow) => {
-  if (Array.isArray(item?.image_urls) && item.image_urls.length) {
-    const first = String(item.image_urls.find(Boolean) || "").trim()
-    if (first) return first
-  }
-  return String(item?.image_url || "").trim()
-}
-
 const normalize = (item: ServiceRow): ServiceDetail => ({
   id: String(item?.id || "").trim(),
   name: String(item?.name || "").trim(),
   description: String(item?.description || "").trim(),
-  imageUrl: pickServiceImage(item),
 })
 
 const loadService = async () => {

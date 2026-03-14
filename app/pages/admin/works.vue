@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 definePageMeta({ middleware: ["auth"] })
+useHead({ title: "Admin | Works" })
 
 onMounted(() => {
   navigateTo("/admin/products", { replace: true })

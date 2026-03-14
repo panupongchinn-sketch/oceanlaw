@@ -3,7 +3,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const { getSession } = useAuth()
 
-  // normalize path กันเคส /oceanlogin/ หรือ /admin/products/
+  // normalize path กันเคส /login/ หรือ /admin/products/
   const path = (to.path || "/").replace(/\/+$/, "") || "/"
 
   // ✅ หน้าที่ “ต้องล็อกอิน” (เพิ่มได้ตามต้องการ)
@@ -13,17 +13,17 @@ export default defineNuxtRouteMiddleware(async (to) => {
   )
 
   // ✅ หน้าสาธารณะ (เข้าดูได้)
-  const authPages = ["/login", "/oceanlogin", "/signup"]
+  const authPages = ["/login", "/signup"]
   const isAuthPage = authPages.includes(path)
 
   const { session } = await getSession()
 
-  // ถ้าไม่ล็อกอิน แล้วเข้าหน้า protected → ไป oceanlogin
+  // ถ้าไม่ล็อกอิน แล้วเข้าหน้า protected → ไป login
   if (!session && isProtectedRoute) {
-    return navigateTo("/oceanlogin")
+    return navigateTo("/login")
   }
 
-  // ถ้าล็อกอินแล้ว แต่จะไป login/oceanlogin/signup → เด้งไปหน้าคอร์สของฉัน (หรือจะเป็น "/" ก็ได้)
+  // ถ้าล็อกอินแล้ว แต่จะไป login/signup → เด้งไปหน้าคอร์สของฉัน (หรือจะเป็น "/" ก็ได้)
   if (session && isAuthPage) {
     return navigateTo("/admin/products")
   }

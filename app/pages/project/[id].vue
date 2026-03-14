@@ -71,9 +71,6 @@
             <span v-if="project.status" class="rounded-full bg-amber-50 px-3 py-1.5 font-bold text-amber-700">
               {{ project.status }}
             </span>
-            <span class="rounded-full bg-slate-900 px-3 py-1.5 font-bold text-white">
-              {{ projectImages.length || 1 }} รูป
-            </span>
           </div>
 
           <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-7"><p class="project-description">{{ project.description }}</p></div>
@@ -122,7 +119,7 @@ const projectImages = computed(() => {
 })
 
 useHead(() => ({
-  title: `${project.value?.name || "รายละเอียดโปรเจค"} | probuild`,
+  title: `${project.value?.name || "รายละเอียดโปรเจค"} | Oceanlaw`,
 }))
 
 const loadProject = async () => {
@@ -198,5 +195,6 @@ onBeforeUnmount(() => {
   color: #1e293b;
 }
 </style>
+
 
 

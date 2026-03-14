@@ -22,7 +22,7 @@
             <div class="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
               <span class="lux-chip">SKU: {{ product?.sku || '-' }}</span>
               <span class="lux-chip">Category: {{ product?.category || '-' }}</span>
-              <span class="lux-chip">Price: {{ product?.unit || '-' }}</span>
+              <span class="lux-chip">Unit: {{ product?.unit || '-' }}</span>
             </div>
           </div>
 
@@ -140,7 +140,7 @@
                   </div>
 
                   <div class="spec-card">
-                    <div class="spec-label">Price</div>
+                    <div class="spec-label">Unit</div>
                     <div class="spec-value">{{ product?.unit || '-' }}</div>
                   </div>
 
@@ -336,7 +336,7 @@ watch(id, () => loadProduct())
 .hero-photo {
   position: absolute;
   inset: 0;
-  background-image: url('/head-rate.jpg');
+  background-image: url('/f248d603c9559d3dff1bb684011d9ae2.jpg');
   background-size: cover;
   background-position: center;
 }

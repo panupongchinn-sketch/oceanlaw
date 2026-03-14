@@ -80,7 +80,7 @@
             </div>
 
             <div v-if="p.unit">
-              <span class="font-semibold text-slate-600">Price:</span>
+              <span class="font-semibold text-slate-600">Unit:</span>
               <span class="ml-1">{{ p.unit }}</span>
             </div>
           </div>
