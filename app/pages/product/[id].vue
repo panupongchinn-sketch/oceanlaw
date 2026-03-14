@@ -22,7 +22,7 @@
             <div class="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
               <span class="lux-chip">SKU: {{ product?.sku || '-' }}</span>
               <span class="lux-chip">Category: {{ product?.category || '-' }}</span>
-              <span class="lux-chip">Unit: {{ product?.unit || '-' }}</span>
+              <span class="lux-chip">Price: {{ product?.unit || '-' }}</span>
             </div>
           </div>
 
@@ -140,7 +140,7 @@
                   </div>
 
                   <div class="spec-card">
-                    <div class="spec-label">Unit</div>
+                    <div class="spec-label">Price</div>
                     <div class="spec-value">{{ product?.unit || '-' }}</div>
                   </div>
 

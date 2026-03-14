@@ -286,7 +286,7 @@ const totalFiltered = computed(() => filteredProducts.value.length)
 const productSummary = (p: ProductRow) => {
   const category = p.category || 'อุปกรณ์กีฬา'
   const brand = p.brand || 'Oceanlaw'
-  const unit = p.unit ? ` หน่วยนับ ${p.unit}` : ''
+  const unit = p.unit ? ` ราคา ${p.unit}` : ''
   return `สินค้า${category}จากแบรนด์ ${brand} เหมาะสำหรับงานสนามกีฬาและการฝึกซ้อม${unit}`
 }
 

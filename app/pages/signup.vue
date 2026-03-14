@@ -123,7 +123,7 @@
 
             <div class="text-slate-600">
               มีบัญชีอยู่แล้ว?
-              <NuxtLink to="/login" class="font-semibold text-red-600 hover:text-red-700">
+              <NuxtLink to="/oceanlogin" class="font-semibold text-red-600 hover:text-red-700">
                 เข้าสู่ระบบ
               </NuxtLink>
             </div>
@@ -187,7 +187,7 @@ const handleSignup = async () => {
     confirmPassword.value = ""
 
     setTimeout(() => {
-      navigateTo("/login")
+      navigateTo("/oceanlogin")
     }, 1200)
   } catch (err: any) {
     errorMessage.value = err?.message || "เกิดข้อผิดพลาด"

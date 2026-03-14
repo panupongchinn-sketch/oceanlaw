@@ -59,6 +59,12 @@
             </div>
 
             <h3 class="mt-4 line-clamp-2 text-xl font-black leading-tight text-[#153d18] group-hover:text-white">{{ service.name }}</h3>
+            <div
+              v-if="formatPrice(service.unit)"
+              class="mt-4 text-sm font-extrabold text-[#166534] transition-all duration-300 group-hover:text-white"
+            >
+              {{ formatPrice(service.unit) }}
+            </div>
             <p class="mt-3 line-clamp-3 text-sm leading-7 text-[#456149] group-hover:text-white/95">{{ service.description }}</p>
 
             <div class="relative z-20 mt-6">
@@ -86,6 +92,7 @@ type ServiceRow = {
   id: string
   name: string | null
   description?: string | null
+  unit?: string | null
   enabled?: boolean | null
   image_url?: string | null
   image_urls?: string[] | null
@@ -95,6 +102,7 @@ type DisplayService = {
   id: string
   name: string
   description: string
+  unit: string
   enabled: boolean
   imageUrl: string
 }
@@ -122,7 +130,7 @@ const defaultServices: DisplayService[] = [
   { id: "d14", name: "วิทยากรอบรมภาษี", description: "อบรมความรู้ด้านภาษีสำหรับองค์กร", enabled: true },
   { id: "d15", name: "เตรียมตัวสรรพากรตรวจ", description: "เตรียมเอกสาร ชี้แจงแบบมืออาชีพ", enabled: true },
   { id: "d16", name: "อบรม FlowAccount / PEAK", description: "สอนใช้งานโปรแกรมบัญชีออนไลน์", enabled: true },
-].map((item) => ({ ...item, imageUrl: "" }))
+].map((item) => ({ ...item, imageUrl: "", unit: "" }))
 
 const pickServiceImage = (item: ServiceRow) => {
   if (Array.isArray(item?.image_urls) && item.image_urls.length) {
@@ -132,12 +140,25 @@ const pickServiceImage = (item: ServiceRow) => {
   return String(item?.image_url || "").trim()
 }
 
+const formatPrice = (value?: string | null) => {
+  const raw = String(value || "").trim()
+  if (!raw) return ""
+
+  const normalized = raw.replace(/,/g, "").replace(/\s*บาท$/u, "").trim()
+  if (!/^\d+(\.\d+)?$/.test(normalized)) return raw
+
+  const [integerPart, decimalPart] = normalized.split(".")
+  const formattedInt = Number(integerPart).toLocaleString("en-US")
+  return decimalPart ? `${formattedInt}.${decimalPart} บาท` : `${formattedInt} บาท`
+}
+
 const displayServices = computed(() => {
   const mapped: DisplayService[] = services.value
     .map((item) => ({
       id: String(item.id || ""),
       name: String(item.name || ""),
       description: String(item.description || ""),
+      unit: String(item.unit || ""),
       enabled: item.enabled !== false,
       imageUrl: pickServiceImage(item),
     }))

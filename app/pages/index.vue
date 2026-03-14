@@ -100,6 +100,12 @@
               </div>
 
               <h3 class="mt-5 line-clamp-3 text-[1.05rem] font-black leading-tight text-[#163027] sm:text-2xl">{{ service.name }}</h3>
+              <div
+                v-if="formatPrice(service.unit)"
+                class="mt-4 text-sm font-extrabold text-[#166534] sm:text-base"
+              >
+                {{ formatPrice(service.unit) }}
+              </div>
               <p class="mt-3 line-clamp-5 text-sm leading-relaxed text-[#5f7f71] sm:line-clamp-3 sm:text-base sm:text-slate-700">{{ service.description }}</p>
 
               <ul v-if="serviceHighlights(service).length" class="mt-4 hidden space-y-2 text-sm text-slate-800 sm:block">
@@ -245,6 +251,7 @@ type ServiceRow = {
   id: string
   name: string
   description?: string
+  unit?: string | null
   image_url?: string | null
   image_urls?: string[] | null
 }
@@ -292,6 +299,18 @@ const serviceHighlights = (s: ServiceRow) => {
     .map((item) => item.trim())
     .filter(Boolean)
     .slice(0, 3)
+}
+
+const formatPrice = (value?: string | null) => {
+  const raw = String(value || "").trim()
+  if (!raw) return ""
+
+  const normalized = raw.replace(/,/g, "").replace(/\s*บาท$/u, "").trim()
+  if (!/^\d+(\.\d+)?$/.test(normalized)) return raw
+
+  const [integerPart, decimalPart] = normalized.split(".")
+  const formattedInt = Number(integerPart).toLocaleString("en-US")
+  return decimalPart ? `${formattedInt}.${decimalPart} บาท` : `${formattedInt} บาท`
 }
 
 const onImgError = (e: Event) => {
@@ -358,6 +377,7 @@ const loadServicesLocal = async () => {
           id: String(item?.id || ""),
           name: String(item?.name || ""),
           description: String(item?.description || ""),
+          unit: item?.unit == null ? null : String(item.unit),
         }))
       : []
   } catch (e) {

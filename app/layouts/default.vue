@@ -41,16 +41,8 @@
                 </button>
               </div>
 
-              <div class="flex items-center">
-                <NuxtLink
-                  v-if="!isLoggedIn"
-                  to="/login"
-                  class="inline-flex h-9 items-center rounded-lg bg-[#166534] px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#14532d] active:bg-[#0f3d23] focus:outline-none focus:ring-2 focus:ring-[#166534]/30"
-                >
-                  เข้าสู่ระบบ
-                </NuxtLink>
-
-                <div v-else class="flex items-center gap-2">
+              <div v-if="isLoggedIn" class="flex items-center">
+                <div class="flex items-center gap-2">
                   <button
                     type="button"
                     class="inline-flex h-9 items-center rounded-lg border border-slate-200 px-4 text-sm font-semibold text-slate-700 hover:bg-slate-50"
