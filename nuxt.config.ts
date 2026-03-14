@@ -12,8 +12,9 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      title: "Oceanlaw",
       link: [
-        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg?v=2" },
+        { rel: "icon", type: "image/jpeg", href: "/oceanlaw-logo.jpg?v=1" },
         { rel: "alternate icon", type: "image/x-icon", href: "/1.ico" },
       ],
     },
