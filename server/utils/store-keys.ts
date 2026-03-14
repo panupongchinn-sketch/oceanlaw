@@ -6,6 +6,7 @@ export const ALLOWED_STORE_KEYS = new Set([
   "shade_settings",
   "partners",
   "promotions",
+  "ocean_messages",
   "contact_messages",
   "invoice_requests",
   "training_courses",

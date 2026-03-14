@@ -161,20 +161,20 @@ const getArticlesValue = async () => {
   }))
 }
 
-const getContactMessagesValue = async () => {
+const getOceanMessagesValue = async () => {
   const supabase = getSupabase()
   if (!supabase) return null
 
   const { data, error } = await supabase
-    .from("contact_messages")
+    .from("ocean_messages")
     .select("id, full_name, phone, company, email, subject, detail, source_page, created_at")
     .order("created_at", { ascending: false })
 
   if (error) {
-    if (isMissingTableError(error, "contact_messages")) return null
+    if (isMissingTableError(error, "ocean_messages")) return null
     throw createError({
       statusCode: 500,
-      statusMessage: `Read contact_messages failed: ${error.message}`,
+      statusMessage: `Read ocean_messages failed: ${error.message}`,
     })
   }
 
@@ -296,18 +296,18 @@ const setArticlesValue = async (value: unknown) => {
   return true
 }
 
-const setContactMessagesValue = async (value: unknown) => {
+const setOceanMessagesValue = async (value: unknown) => {
   const supabase = getSupabase()
   if (!supabase) return false
 
   const rows = Array.isArray(value) ? value : []
 
-  const { error: deleteError } = await supabase.from("contact_messages").delete().not("id", "is", null)
+  const { error: deleteError } = await supabase.from("ocean_messages").delete().not("id", "is", null)
   if (deleteError) {
-    if (isMissingTableError(deleteError, "contact_messages")) return false
+    if (isMissingTableError(deleteError, "ocean_messages")) return false
     throw createError({
       statusCode: 500,
-      statusMessage: `Delete contact_messages failed: ${deleteError.message}`,
+      statusMessage: `Delete ocean_messages failed: ${deleteError.message}`,
     })
   }
 
@@ -339,12 +339,12 @@ const setContactMessagesValue = async (value: unknown) => {
 
   if (!payload.length) return true
 
-  const { error: insertError } = await supabase.from("contact_messages").insert(payload as any[])
+  const { error: insertError } = await supabase.from("ocean_messages").insert(payload as any[])
   if (insertError) {
-    if (isMissingTableError(insertError, "contact_messages")) return false
+    if (isMissingTableError(insertError, "ocean_messages")) return false
     throw createError({
       statusCode: 500,
-      statusMessage: `Insert contact_messages failed: ${insertError.message}`,
+      statusMessage: `Insert ocean_messages failed: ${insertError.message}`,
     })
   }
 
@@ -404,8 +404,8 @@ export const getStoreValue = async (key: string) => {
     if (tableRows) return tableRows
   }
 
-  if (key === "contact_messages") {
-    const tableRows = await getContactMessagesValue()
+  if (key === "ocean_messages") {
+    const tableRows = await getOceanMessagesValue()
     if (tableRows) return tableRows
   }
 
@@ -427,8 +427,8 @@ export const setStoreValue = async (key: string, value: unknown) => {
     if (saved) return
   }
 
-  if (key === "contact_messages") {
-    const saved = await setContactMessagesValue(value)
+  if (key === "ocean_messages") {
+    const saved = await setOceanMessagesValue(value)
     if (saved) return
   }
 

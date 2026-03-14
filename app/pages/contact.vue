@@ -218,7 +218,7 @@ type ContactMessageRow = ContactForm & {
   created_at: string
 }
 
-const CONTACT_STORAGE_KEY = "contact_messages"
+const CONTACT_STORAGE_KEY = "ocean_messages"
 const { getValue, setValue } = useSharedStore()
 
 const officePhone = "088-9636222"
