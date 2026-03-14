@@ -161,6 +161,36 @@ const getArticlesValue = async () => {
   }))
 }
 
+const getContactMessagesValue = async () => {
+  const supabase = getSupabase()
+  if (!supabase) return null
+
+  const { data, error } = await supabase
+    .from("contact_messages")
+    .select("id, full_name, phone, company, email, subject, detail, source_page, created_at")
+    .order("created_at", { ascending: false })
+
+  if (error) {
+    if (isMissingTableError(error, "contact_messages")) return null
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Read contact_messages failed: ${error.message}`,
+    })
+  }
+
+  return (data || []).map((x: any) => ({
+    id: String(x.id || ""),
+    full_name: safeString(x.full_name),
+    phone: safeString(x.phone),
+    company: safeString(x.company),
+    email: safeString(x.email),
+    subject: safeString(x.subject),
+    detail: safeString(x.detail),
+    source_page: safeString(x.source_page),
+    created_at: x?.created_at ? new Date(x.created_at).toISOString() : undefined,
+  }))
+}
+
 const setServicesValue = async (value: unknown) => {
   const supabase = getSupabase()
   if (!supabase) return false
@@ -266,6 +296,61 @@ const setArticlesValue = async (value: unknown) => {
   return true
 }
 
+const setContactMessagesValue = async (value: unknown) => {
+  const supabase = getSupabase()
+  if (!supabase) return false
+
+  const rows = Array.isArray(value) ? value : []
+
+  const { error: deleteError } = await supabase.from("contact_messages").delete().not("id", "is", null)
+  if (deleteError) {
+    if (isMissingTableError(deleteError, "contact_messages")) return false
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Delete contact_messages failed: ${deleteError.message}`,
+    })
+  }
+
+  const payload = rows
+    .map((raw: any) => {
+      const fullName = safeString(raw?.full_name)
+      const detail = safeString(raw?.detail)
+      if (!fullName || !detail) return null
+
+      const row: Record<string, unknown> = {
+        full_name: fullName,
+        phone: safeString(raw?.phone),
+        company: safeString(raw?.company),
+        email: safeString(raw?.email),
+        subject: safeString(raw?.subject),
+        detail,
+        source_page: safeString(raw?.source_page),
+      }
+
+      const id = safeString(raw?.id)
+      const createdAt = safeIsoDate(raw?.created_at)
+
+      if (id && isUuid(id)) row.id = id
+      if (createdAt) row.created_at = createdAt
+
+      return row
+    })
+    .filter(Boolean)
+
+  if (!payload.length) return true
+
+  const { error: insertError } = await supabase.from("contact_messages").insert(payload as any[])
+  if (insertError) {
+    if (isMissingTableError(insertError, "contact_messages")) return false
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Insert contact_messages failed: ${insertError.message}`,
+    })
+  }
+
+  return true
+}
+
 const getAppStoreValue = async (key: string) => {
   const supabase = getSupabase()
   if (!supabase) return null
@@ -319,6 +404,11 @@ export const getStoreValue = async (key: string) => {
     if (tableRows) return tableRows
   }
 
+  if (key === "contact_messages") {
+    const tableRows = await getContactMessagesValue()
+    if (tableRows) return tableRows
+  }
+
   await ensureStoreTable()
   const appStoreRows = await getAppStoreValue(key)
   if (appStoreRows !== null) return appStoreRows
@@ -334,6 +424,11 @@ export const setStoreValue = async (key: string, value: unknown) => {
 
   if (key === "articles") {
     const saved = await setArticlesValue(value)
+    if (saved) return
+  }
+
+  if (key === "contact_messages") {
+    const saved = await setContactMessagesValue(value)
     if (saved) return
   }
 
