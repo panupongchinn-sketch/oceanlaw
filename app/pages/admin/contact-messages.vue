@@ -53,7 +53,6 @@
                 <h2 class="text-xl font-extrabold text-slate-900 sm:text-2xl">{{ row.full_name || "-" }}</h2>
                 <div class="mt-1 text-sm text-slate-500">ส่งเมื่อ: {{ formatDateTime(row.created_at) }}</div>
               </div>
-
             </div>
 
             <div class="mt-4 grid gap-2.5 text-base text-slate-700 sm:grid-cols-2">
@@ -65,6 +64,28 @@
 
             <div class="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-3 text-base leading-8 text-slate-700">
               {{ row.detail || "-" }}
+            </div>
+
+            <div class="mt-3 flex flex-wrap items-center justify-end gap-2">
+              <span
+                v-if="row.contacted"
+                class="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700"
+              >
+                ติดต่อลูกค้าแล้ว
+              </span>
+              <button
+                type="button"
+                class="h-10 rounded-xl px-4 text-sm font-semibold transition disabled:cursor-not-allowed"
+                :class="
+                  row.contacted
+                    ? 'border border-emerald-200 bg-emerald-50 text-emerald-700 disabled:opacity-100'
+                    : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-70'
+                "
+                :disabled="row.contacted || isSaving(row.id)"
+                @click="markAsContacted(row.id)"
+              >
+                {{ isSaving(row.id) ? "กำลังบันทึก..." : "ติดต่อลูกค้าแล้ว" }}
+              </button>
             </div>
           </article>
         </div>
@@ -89,15 +110,18 @@ type ContactMessageRow = {
   detail?: string | null
   source_page?: string | null
   created_at?: string | null
+  contacted?: boolean
+  contacted_at?: string | null
 }
 
-const CONTACT_STORAGE_KEY = "ocean_messages"
-const { getValue } = useSharedStore()
+const CONTACT_STORAGE_KEY = "contact_messages"
+const { getValue, setValue } = useSharedStore()
 
 const loading = ref(false)
 const errorMsg = ref("")
 const search = ref("")
 const rows = ref<ContactMessageRow[]>([])
+const savingMap = ref<Record<string, boolean>>({})
 
 const normalize = (item: any): ContactMessageRow => ({
   id: String(item?.id || `${Date.now()}_${Math.random()}`),
@@ -109,6 +133,8 @@ const normalize = (item: any): ContactMessageRow => ({
   detail: item?.detail == null ? "" : String(item.detail),
   source_page: item?.source_page == null ? "" : String(item.source_page),
   created_at: item?.created_at == null ? "" : String(item.created_at),
+  contacted: Boolean(item?.contacted),
+  contacted_at: item?.contacted_at == null ? "" : String(item.contacted_at),
 })
 
 const fromContactRows = computed(() => {
@@ -151,6 +177,39 @@ const formatDateTime = (iso: string | null | undefined) => {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date)
+}
+
+const nowIso = () => new Date().toISOString()
+const isSaving = (id: string) => Boolean(savingMap.value[id])
+
+const markAsContacted = async (id: string) => {
+  const current = rows.value.find((item) => item.id === id)
+  if (!current || current.contacted || isSaving(id)) return
+
+  savingMap.value = { ...savingMap.value, [id]: true }
+  errorMsg.value = ""
+  const prevRows = rows.value.map((item) => ({ ...item }))
+
+  rows.value = rows.value.map((item) =>
+    item.id === id
+      ? {
+          ...item,
+          contacted: true,
+          contacted_at: nowIso(),
+        }
+      : item,
+  )
+
+  try {
+    await setValue<ContactMessageRow>(CONTACT_STORAGE_KEY, rows.value)
+  } catch (e: any) {
+    rows.value = prevRows
+    errorMsg.value = e?.message || "บันทึกสถานะไม่สำเร็จ"
+  } finally {
+    const nextMap = { ...savingMap.value }
+    delete nextMap[id]
+    savingMap.value = nextMap
+  }
 }
 
 const loadMessages = async () => {
