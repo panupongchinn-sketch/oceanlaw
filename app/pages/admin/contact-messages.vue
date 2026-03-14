@@ -114,7 +114,7 @@ type ContactMessageRow = {
   contacted_at?: string | null
 }
 
-const CONTACT_STORAGE_KEY = "contact_messages"
+const CONTACT_STORAGE_KEY = "ocean_messages"
 const { getValue, setValue } = useSharedStore()
 
 const loading = ref(false)
